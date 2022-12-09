@@ -1,6 +1,24 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+class StatusApproval(models.Model):
+    Agreed = 'Согласовано'
+    ToBeAgreed = 'На согласовании'
+    Denied = 'Отказано'
+    CHOICES = (
+        (Agreed, 'Согласовано'),
+        (ToBeAgreed, 'На согласовании'),
+        (Denied, 'Отказано')
+    )
+    status = models.CharField(choices=CHOICES, max_length=300)
+
+    class Meta:
+        db_table = 'StatusApproval'
+        verbose_name = 'StatusApproval'
+        verbose_name_plural = 'StatusApproval'
+
+        def __str__(self):
+            return self.status
 
 class StatusProject(models.Model):
     CHOICES = (
@@ -32,7 +50,9 @@ class Project(models.Model):
     background = models.TextField()
     result = models.TextField()
     criterias = models.TextField()
+    tags = models.TextField()
     id_status = models.ForeignKey('start.StatusProject',on_delete=models.DO_NOTHING,db_column='id_status')
+    status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -43,29 +63,53 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     self.id_status = StatusJob.objects.get(pk=0)
-    #     super().save(*args,**kwargs)
-def userCV_directory_path(instance, filename):
-    return 'candidate/CV/' + filename
-
-def userPhoto_directory_path(instance, filename):
-    # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
-    return 'candidate/photo/' + filename
-
 
 class ContactPerson(models.Model):
-    organization = models.ForeignKey(User,on_delete=models.CASCADE)
+    organization = models.ForeignKey("start.Organization",on_delete=models.CASCADE)
     name = models.TextField()
     email = models.EmailField()
     phone = models.TextField()
 
-
 class Rialto(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    student = models.ForeignKey("start.Student",on_delete=models.CASCADE)
     definitions = models.TextField()
     presentation = models.FileField()
+    status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
 
+class Organization(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    INN = models.IntegerField()
+
+class Student(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    tags = models.TextField()
+    ISU = models.IntegerField()
+    CV = models.FileField()
+    education = models.TextField()
+    department = models.TextField()
+    hardskill_softskill = models.TextField()
+    experience = models.TextField()
+
+class ApprovalPermission(models.Model):
+    organization = models.ForeignKey("start.Organization",on_delete=models.CASCADE)
+    field = models.TextField()
+    statusApproval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
+
+class StudentProject(models.Model):
+    students = models.ForeignKey("start.Student",on_delete=models.DO_NOTHING)
+    project = models.ForeignKey("start.Project",on_delete=models.DO_NOTHING)
+    statusApproval = models.ForeignKey(StatusApproval, on_delete=models.DO_NOTHING)
+
+
+# def save(self, *args, **kwargs):
+#     self.id_status = StatusJob.objects.get(pk=0)
+#     super().save(*args,**kwargs)
+# def userCV_directory_path(instance, filename):
+#     return 'candidate/CV/' + filename
+#
+# def userPhoto_directory_path(instance, filename):
+#     # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
+#     return 'candidate/photo/' + filename
 
 # class ActionHistory(models.Model):
 #     job_seek = models.ForeignKey('JobSeek',on_delete=models.DO_NOTHING, db_column='job_seek')
