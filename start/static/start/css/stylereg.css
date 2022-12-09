@@ -7,7 +7,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 body{
-  background: linear-gradient(0.25turn, rgb(27, 20, 51), rgb(1, 42, 47));
+  background: linear-gradient(0.25turn, rgb(27, 20, 51), rgb(0, 0, 0));
 }
 .wrapper{
   max-width: 500px;
