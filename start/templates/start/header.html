@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" >
+{% load static %}
+<head>
+    <meta charset="utf-8">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+    <link href="https://unpkg.com/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/start/css/stylecand.css">
+    <link rel="stylesheet" href="static/start/css/stylejob.css"><!--
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">-->
+    <!--
+    font-family: 'Alegreya', serif;
+    -->
+    <title>
+        {% block title%}
+        {% endblock %}
+    </title>
+</head>
+<body class="mainbody d-flex flex-column min-vh-100 ">
+{% if request.user.is_authenticated %}
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+
+        <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+        <img src="https://img.icons8.com/fluency/48/null/sakura.png"/>
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex flex-shrink-0 items-center">
+            <img src="https://img.icons8.com/fluency/48/null/sakura.png"/>
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="/candidates" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Кандидаты</a>
+
+            <a href="/jobs" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Вакансии</a>
+
+              <a href="/jobseek" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Отклики</a>
+
+            <a href="/parser" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Получить данные из файла</a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div class="text-gray-300">
+           {{ user.last_name }} {{ user.first_name}}
+          </div>
+        <!-- Profile dropdown -->
+        <div class="relative ml-3">
+
+          <div>
+                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                </div>
+            </div>
+
+          <a href="/logout" class="text-gray-300 hover:bg-gray-700 ml-4 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Выйти</a>
+      </div>
+    </div>
+  </div>
+
+
+</nav>
+
+
+
+{% else %}
+<nav class="bg-gray-800">
+</nav>
+{% endif %}
+
+{% block content %}
+{% endblock %}
+</body>
