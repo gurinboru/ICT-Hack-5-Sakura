@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Войти</title>
+  <link rel="stylesheet" href="static/start/css/stylereg.css">
+</head>
+
+<body>
+<form action="/login" method="POST">
+{% csrf_token %}
+<div class="wrapper">
+    <div class="title">
+      Войти
+    </div>
+    <div class="form">
+
+        <div class="inputfield">
+          <label>Username</label>
+          {{form.username}}
+       </div> 
+
+         <div class="inputfield">
+          <label>Пароль</label>
+             {{form.password}}
+       </div>
+
+      <div class="inputfield">
+          <a href="candidates">
+        <input type="submit" value="Войти" class="btn">
+          </a>
+      </div>
+    </div>
+</div>
+</form>
+</body>
+</html>
