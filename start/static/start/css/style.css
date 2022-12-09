@@ -1,4 +1,12 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
+@font-face {
+	font-family: 'ALS Gorizont';
+	font-style: normal;
+	font-weight: normal;
+	src: local('ALS Gorizont'),
+		 url('/static/start/fonts/ALS Gorizont Variable.woff') format('woff'),
+		 url('/static/start/fonts/ALS Gorizont Variable.ttf') format('ttf');
+}
 
 body {
   margin:0;
@@ -124,3 +132,14 @@ p {
   z-index: 2;
 }
 
+
+.btn {
+  background:  #221183;
+  color: #ffffff;
+  border-radius: 4px;
+  font-family: 'ALS Gorizont', sans-serif;
+}
+.btn:hover{
+  background: #52A874;
+  color: #000000;
+}
