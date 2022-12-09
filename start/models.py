@@ -55,27 +55,27 @@ def userPhoto_directory_path(instance, filename):
 
 
 class ContactPerson(models.Model):
-    organization = models.ForeignKey(User,on_delete=models.CASCADE())
+    organization = models.ForeignKey(User,on_delete=models.CASCADE)
     name = models.TextField()
     email = models.EmailField()
     phone = models.TextField()
 
 
 class Rialto(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE())
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     definitions = models.TextField()
     presentation = models.FileField()
 
 
-class ActionHistory(models.Model):
-    job_seek = models.ForeignKey('JobSeek',on_delete=models.DO_NOTHING, db_column='job_seek')
-    action_name = models.TextField()
-    value_before = models.TextField()
-    value_after = models.TextField()
-    data = models.DateField()
-    comment = models.TextField(null=True)
-
-    class Meta:
-        db_table = 'actionHistory'
-        verbose_name = 'ActionHistory'
-        verbose_name_plural = 'ActionHistory'
+# class ActionHistory(models.Model):
+#     job_seek = models.ForeignKey('JobSeek',on_delete=models.DO_NOTHING, db_column='job_seek')
+#     action_name = models.TextField()
+#     value_before = models.TextField()
+#     value_after = models.TextField()
+#     data = models.DateField()
+#     comment = models.TextField(null=True)
+#
+#     class Meta:
+#         db_table = 'actionHistory'
+#         verbose_name = 'ActionHistory'
+#         verbose_name_plural = 'ActionHistory'

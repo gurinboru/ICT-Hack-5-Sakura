@@ -1,4 +1,8 @@
-
+import django
+from django.contrib import messages
+from django.contrib.auth import authenticate, logout, login
+from django.shortcuts import render, redirect
+from .forms import LoginForm, UserRegistrationForm
 
 def login(request):
     if request.method == 'POST':
@@ -12,12 +16,11 @@ def login(request):
                     return redirect('/candidates')
                 else:
                     messages.error(request, 'Disabled account')
-                    # return render(request, 'login/login.html', context={"form": form})
             else:
                 messages.error(request, 'Введен неверный логин или пароль')
-            return render(request, 'authentication/login.html', context={"form": form})
+            return render(request, 'login/login.html', context={"form": form})
     form = LoginForm()
-    return render(request, 'authentication/login.html', context={"form": form})
+    return render(request, 'login/login.html', context={"form": form})
 
 
 def registration_user(request):
@@ -32,9 +35,9 @@ def registration_user(request):
             return render(request, 'start/candidates.html')
         else:
             messages.error(request, 'Аккаунт уже существует или введены неверные данные')
-        return render(request, 'authentication/registration.html', context={"form": user_form})
+        return render(request, 'login/registration.html', context={"form": user_form})
     user_form = UserRegistrationForm()
-    return render(request, 'authentication/registration.html', context={"form": user_form})
+    return render(request, 'login/registration.html', context={"form": user_form})
 
 
 def user_logout(request):
