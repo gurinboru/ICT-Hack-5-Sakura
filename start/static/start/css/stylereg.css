@@ -1,20 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
+@font-face {
+	font-family: 'ALS Gorizont';
+	font-style: normal;
+	font-weight: normal;
+	src: local('ALS Gorizont'),
+		 url('/static/start/fonts/ALS Gorizont Variable.woff') format('woff'),
+		 url('/static/start/fonts/ALS Gorizont Variable.ttf') format('ttf');
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'ALS Gorizont', sans-serif;
 }
 body{
-  background: linear-gradient(0.25turn, rgb(27, 20, 51), rgb(0, 0, 0));
+  background: #000000;
 }
 .wrapper{
   max-width: 500px;
   width: 100%;
-  background: #fff;
+  background: #000000;
   margin: 50px auto;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.125);
+  box-shadow: 0 0 0 0.2rem rgb(82, 168, 116);
+  border-radius: 4px;
   padding: 30px;
 }
 
@@ -22,7 +32,7 @@ body{
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 25px;
-  color: #3c90de;
+  color: #ffffff;
   text-transform: uppercase;
   text-align: center;
 }
@@ -39,7 +49,7 @@ body{
 
 .wrapper .form .inputfield label{
    width: 200px;
-   color: #757575;
+   color: #ffffff;
    margin-right: 10px;
   font-size: 14px;
 }
@@ -64,7 +74,7 @@ body{
 .wrapper .form .inputfield .input:focus,
 .wrapper .form .inputfield .textarea:focus,
 .wrapper .form .inputfield .custom_select select:focus{
-  border: 1px solid #fec107;
+  box-shadow: 0 0 0 0.2rem rgb(82, 168, 116);
 }
 
 .wrapper .form .inputfield p{
@@ -77,15 +87,16 @@ body{
    padding: 8px 10px;
   font-size: 15px;
   border: 0px;
-  background:  #3c90de;
-  color: #fff;
+  background:  #221183;
+  color: #ffffff;
   cursor: pointer;
   border-radius: 3px;
   outline: none;
 }
 
 .wrapper .form .inputfield .btn:hover{
-  background: #1c7cd6;
+  background: #52A874;
+  color: #000000;
 }
 
 .wrapper .form .inputfield:last-child{
