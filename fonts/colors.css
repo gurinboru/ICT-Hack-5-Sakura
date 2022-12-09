@@ -1,0 +1,43 @@
+/*
+
+Black:
+#000000
+
+Blue:
+#221183
+
+Green:
+#52A874
+
+Purple:
+#7B45EC
+
+*/
+.background-black{  background-color: #000000;}
+.background-blue{  background-color: #221183;}
+.background-green{  background-color: #52A874;}
+.background-purple{  background-color: #7B45EC;}
+.text-black{  color: #000000;}
+.text-blue{  color: #221183;}
+.text-green{  color: #52A874;}
+.text-purple{  color: #7B45EC;}
+
+
+
+
+@font-face {
+  font-family: "";
+  font-style: normal;
+  font-weight: 400;
+  /* Браузер сначала попробует найти шрифт локально */
+  src: local("Roboto"),
+       /* Если не получилось, загрузит woff2 */
+       url("/fonts/roboto.woff2") format("woff2"),
+       /* Если браузер не поддерживает woff2, загрузит woff */
+       url("/fonts/roboto.woff") format("woff");
+}
+
+/* Теперь можно использовать шрифт */
+body {
+  font-family: "Roboto", "Arial", sans-serif;
+}
