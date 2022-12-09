@@ -100,6 +100,17 @@ class StudentProject(models.Model):
     project = models.ForeignKey("start.Project",on_delete=models.DO_NOTHING)
     statusApproval = models.ForeignKey(StatusApproval, on_delete=models.DO_NOTHING)
 
+
+# def save(self, *args, **kwargs):
+#     self.id_status = StatusJob.objects.get(pk=0)
+#     super().save(*args,**kwargs)
+# def userCV_directory_path(instance, filename):
+#     return 'candidate/CV/' + filename
+#
+# def userPhoto_directory_path(instance, filename):
+#     # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
+#     return 'candidate/photo/' + filename
+
 # class ActionHistory(models.Model):
 #     job_seek = models.ForeignKey('JobSeek',on_delete=models.DO_NOTHING, db_column='job_seek')
 #     action_name = models.TextField()
@@ -112,13 +123,3 @@ class StudentProject(models.Model):
 #         db_table = 'actionHistory'
 #         verbose_name = 'ActionHistory'
 #         verbose_name_plural = 'ActionHistory'
-
-    # def save(self, *args, **kwargs):
-    #     self.id_status = StatusJob.objects.get(pk=0)
-    #     super().save(*args,**kwargs)
-# def userCV_directory_path(instance, filename):
-#     return 'candidate/CV/' + filename
-#
-# def userPhoto_directory_path(instance, filename):
-#     # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
-#     return 'candidate/photo/' + filename
