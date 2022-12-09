@@ -20,7 +20,7 @@ p {
 .header {
   position:relative;
   text-align:center;
-  background: linear-gradient(0.25turn, rgba(84,58,183,1), rgba(0,172,193,1));
+  background: linear-gradient(0.25turn, rgb(27, 20, 51), rgb(1, 42, 47));
   color:white;
 }
 .logo {
