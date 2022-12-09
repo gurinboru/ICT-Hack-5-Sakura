@@ -1,9 +1,9 @@
-# ICT-Hack-5
+# ICT-Hack-5-Sakura
 ## About
 
-Данный проект реализован в рамках кейса хакатона ICT.Hack #5. 
+Данный проект реализован в рамках кейса хакатона ICT.Hack #5 командой "Сакура". 
 
-This project was implemented as part of the hackathon case ICT.Hack #5.
+This project was implemented as part of the hackathon case ICT.Hack #5 by "Sakura" team.
 
 ## Setup
 Для начала работы необходимо распаковать файл с зависимостями `requirements.txt`, и создать '.env' файл с информацией о 
