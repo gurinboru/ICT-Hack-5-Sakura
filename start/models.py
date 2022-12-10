@@ -57,7 +57,7 @@ class Project(models.Model):
     id_status = models.ForeignKey('start.StatusProject',on_delete=models.DO_NOTHING,db_column='id_status')
     status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
     organization = models.ForeignKey('start.Organization',on_delete=models.DO_NOTHING)
-    contactPerson = models.ForeignKey('start.ContactPerson',on_delete=models.DO_NOTHING)
+    contactPerson = models.ForeignKey('start.ContactPerson',on_delete=models.DO_NOTHING,null=True)
 
     class Meta:
         db_table = 'Projects'
