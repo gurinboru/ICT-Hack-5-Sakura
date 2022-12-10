@@ -4,20 +4,20 @@ from .models import ContactPerson
 
 
 class changeStudentForm(forms.Form):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "placeholder":"ФИО"}),required=False)
-    last_name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "placeholder":"89........."}),required=False)
-    phone = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "placeholder":"example@mail.ru"}),required=False)
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control", "placeholder":"Муж/жен"}),required=False)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "placeholder":"Имя"}),required=False)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "placeholder":"Фамилия"}),required=False)
+    phone = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "placeholder":"8........"}),required=False)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control", "placeholder":"Email"}),required=False)
     image = forms.ImageField(widget=forms.FileInput(attrs={"class":"form-control", "placeholder":"Фото"}),required=False)
-    tags = forms.CharField(widget=forms.TextInput(attrs={ "class":"form-control", "placeholder":"01.01.1999"}),required=False)
+    tags = forms.CharField(widget=forms.TextInput(attrs={ "class":"form-control", "placeholder":"Tags"}),required=False)
     CV = forms.FileField(widget=forms.FileInput(attrs={"class":"form-control"}),required=False)
-    education = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+    education = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Education"}),
                        required=False)
-    department = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+    department = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Department"}),
                        required=False)
-    hardskill_softskill = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+    hardskill_softskill = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Skills"}),
                        required=False)
-    experience = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+    experience = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Exp"}),
                        required=False)
 
 class addProjectForm(forms.Form):
@@ -53,13 +53,13 @@ class addProjectForm(forms.Form):
 
 class changeOrganizationForm(forms.Form):
 
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "Муж/жен"}),
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "Email"}),
                              required=True)
-    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Разработчик"}),
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Contact people"}),
                                required=True)
 
-    name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Разработчик"}),
+    name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Name"}),
                                required=True)
-    INN = forms.IntegerField(widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "Разработчик"}),
+    INN = forms.IntegerField(widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "INN"}),
                                required=True)
 
