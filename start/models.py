@@ -81,6 +81,7 @@ class Rialto(models.Model):
 
 class Organization(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    name = models.TextField()
     INN = models.IntegerField(null=True)
 
 class Student(models.Model):
