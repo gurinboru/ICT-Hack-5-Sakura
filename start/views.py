@@ -169,6 +169,10 @@ def getProject(request,pk):
                 content = {
                     "project": project,
                 }
+        else:
+            content = {
+                "project": project,
+            }
             return render(request, 'start/curproject.html', content)
     except Organization.DoesNotExist:
         content = {
