@@ -10,4 +10,5 @@ urlpatterns = [
     path('add_project', views.addProject),
     path('profile', views.cangeProfile, name='profile'),
     path('rialtos', views.rialtos, name='rialtos'),
+    path('currialto/<int:pk>', views.getRialto, name='currialto')
 ]
