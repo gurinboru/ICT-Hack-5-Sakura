@@ -89,7 +89,6 @@ def cangeProfile(request):
                     cd = form.cleaned_data
                     user.first_name = cd["first_name"]
                     user.last_name = cd["last_name"]
-                    user.username = cd["username"]
                     user.email = cd["email"]
                     student.phone = cd["phone"]
                     student.image = cd["image"]
@@ -107,7 +106,6 @@ def cangeProfile(request):
                 "last_name":user.last_name,
                 "phone":student.phone,
                 "email":user.email,
-                "username":user.username,
                 "image":student.image,
                 "tags":student.tags,
                 "CV":student.CV,
