@@ -34,3 +34,12 @@
 body{
     background: black;
 }
+.btn2 {
+  background:  white;
+  color: black;
+  border-radius: 4px;
+}
+.btn2:hover{
+  background: #52A874;
+  color: #000000;
+}
