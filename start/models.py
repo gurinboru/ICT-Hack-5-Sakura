@@ -1,13 +1,26 @@
+import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
 def userPhoto_directory_path(instance, filename):
+    time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    time = str(time)
     # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
-    return 'students/photo/' + filename
+    return 'students/photo/' + filename + time
 
 def usertechDocument_directory_path(instance, filename):
+    time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    time = str(time)
     # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
-    return 'techdocument/' + filename
+    return 'techdocument/' + filename + time
+
+def userpresentationDocument_directory_path(instance, filename):
+    time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    time = str(time)
+    # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
+    return 'presentation/' + filename + time
+
 class StatusApproval(models.Model):
     Agreed = 'Согласовано'
     ToBeAgreed = 'На согласовании'
@@ -80,7 +93,7 @@ class ContactPerson(models.Model):
 class Rialto(models.Model):
     student = models.ForeignKey("start.Student",on_delete=models.CASCADE)
     definitions = models.TextField()
-    presentation = models.FileField()
+    presentation = models.FileField(upload_to=userpresentationDocument_directory_path)
     status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
 
 class Organization(models.Model):
@@ -109,25 +122,3 @@ class StudentProject(models.Model):
     students = models.ForeignKey("start.Student",on_delete=models.DO_NOTHING)
     project = models.ForeignKey("start.Project",on_delete=models.DO_NOTHING)
     statusApproval = models.ForeignKey(StatusApproval, on_delete=models.DO_NOTHING)
-
-
-# def save(self, *args, **kwargs):
-#     self.id_status = StatusJob.objects.get(pk=0)
-#     super().save(*args,**kwargs)
-# def userCV_directory_path(instance, filename):
-#     return 'candidate/CV/' + filename
-#
-
-
-# class ActionHistory(models.Model):
-#     job_seek = models.ForeignKey('JobSeek',on_delete=models.DO_NOTHING, db_column='job_seek')
-#     action_name = models.TextField()
-#     value_before = models.TextField()
-#     value_after = models.TextField()
-#     data = models.DateField()
-#     comment = models.TextField(null=True)
-#
-#     class Meta:
-#         db_table = 'actionHistory'
-#         verbose_name = 'ActionHistory'
-#         verbose_name_plural = 'ActionHistory'

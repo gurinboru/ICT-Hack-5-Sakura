@@ -145,10 +145,20 @@ def projects(request):
 @login_required(login_url='/login')
 def getProject(request,pk):
     project = Project.objects.get(pk)
-
-    content = {
-        "project" : project,
-    }
+    user = User.objects.get(id = request.user.id)
+    try:
+        organization = Organization.objects.get(user=user)
+        if project.tags != None and project.organization == organization :
+            tags = project.tags.replace(",", "").split(' ')
+            recommendstudent = Student.objects.filter(tags__icontains=tags)
+            content = {
+                "recommendstudent" : recommendstudent,
+                "project": project,
+            }
+    except Organization.DoesNotExist:
+        content = {
+            "project" : project,
+        }
     return render(request, 'start/students.html',content)
 
 @login_required(login_url='/login')
