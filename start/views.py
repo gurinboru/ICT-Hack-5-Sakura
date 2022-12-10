@@ -68,9 +68,10 @@ def cangeProfile(request):
                     organization.save()
                     user.save()
                     return redirect('profile')
-        form = changeStudentForm(phone=user.phone, name = organization.name, INN = organization.INN,
+        form = changeOrganizationForm(phone=user.phone, name = organization.name, INN = organization.INN,
                                  email=user.email, username=user.username)
         content = {
+            "type": "organization",
             "form" : form,
         }
     student = Student.objects.get(user=user)
@@ -100,6 +101,7 @@ def cangeProfile(request):
                                  hardskill_softskill=students.hardskill_softskill,
                                  experience=students.experience )
         content = {
+            "type": "student",
             "form" : form,
         }
     return render(request, 'start/students.html',content)
