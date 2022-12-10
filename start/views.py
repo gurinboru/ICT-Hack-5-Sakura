@@ -62,7 +62,6 @@ def cangeProfile(request):
                     cd = form.cleaned_data
                     user.username = cd["username"]
                     user.email = cd["email"]
-                    user.phone = cd["phone"]
                     organization.name = cd['name']
                     organization.INN = cd["INN"]
                     organization.save()
@@ -85,7 +84,7 @@ def cangeProfile(request):
                     user.last_name = cd["last_name"]
                     user.username = cd["username"]
                     user.email = cd["email"]
-                    user.phone = cd["phone"]
+                    student.phone = cd["phone"]
                     student.image = cd["image"]
                     student.tags = cd["tags"]
                     student.CV = cd["CV"]

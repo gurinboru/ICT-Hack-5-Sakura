@@ -53,8 +53,7 @@ class addProjectForm(forms.Form):
 
 
 class changeOrganizationForm(forms.Form):
-    phone = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "example@mail.ru"}),
-                            required=True)
+
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "Муж/жен"}),
                              required=True)
     username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Разработчик"}),
