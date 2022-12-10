@@ -136,7 +136,7 @@ def projects(request):
                 "recommendprojects": recommendprojects,
                 "projects": projects,
             }
-            return render(request, 'start/students.html', content)
+            return render(request, 'start/projects.html', content)
     except Student.DoesNotExist:
         content = {
             "projects" : projects,
@@ -144,7 +144,7 @@ def projects(request):
     content = {
         "projects": projects,
     }
-    return render(request, 'start/students.html',content)
+    return render(request, 'start/projects.html',content)
 
 @login_required(login_url='/login')
 def getProject(request,pk):
@@ -163,7 +163,7 @@ def getProject(request,pk):
         content = {
             "project" : project,
         }
-    return render(request, 'start/students.html',content)
+    return render(request, 'start/curproject.html',content)
 
 @login_required(login_url='/login')
 def rialtos(request):
@@ -225,7 +225,7 @@ def addProject(request):
                 newProject.result = cd["result"]
                 newProject.criterias = cd["criterias"]
                 newProject.organization = organization
-                newProject.contactPerson = newContactPerson
+                newProject.contactPerson = newContactPerson.id
                 newProject.status_approval = StatusApproval.objects.get(status = StatusApproval.ToBeAgreed)
                 newProject.id_status = StatusProject.objects.get(status = StatusProject.OPEN)
                 newProject.save()
