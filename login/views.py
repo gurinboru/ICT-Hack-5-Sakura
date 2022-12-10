@@ -31,7 +31,7 @@ def registration_user(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.is_active = True
             new_user.save()
-            if user_form.isOrganization:
+            if user_form.isOrganization == True:
                 Organization(user = new_user).save()
             else:
                 Student(user = new_user).save()

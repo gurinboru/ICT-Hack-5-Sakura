@@ -9,9 +9,14 @@ def start(request):
     return render(request, 'start/start.html')
 
 @login_required(login_url='/login')
-def getCandidates(request):
+def getStudent(request):
     students = Student.objects.all()
+    user = User.objects.get(id = students.user)
+    firstname = user.first_name
+    lastname = user.last_name
     content = {
-        "students" : students
+        "students" : students,
+        "firstname":firstname,
+        "lastname":lastname
     }
     return render(request, 'start/students.html',content)
