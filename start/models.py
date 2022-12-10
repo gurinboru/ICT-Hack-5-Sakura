@@ -56,7 +56,8 @@ class Project(models.Model):
     tags = models.TextField(null=True)
     id_status = models.ForeignKey('start.StatusProject',on_delete=models.DO_NOTHING,db_column='id_status')
     status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
-    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    organization = models.ForeignKey('start.Organization',on_delete=models.DO_NOTHING)
+    contactPerson = models.ForeignKey('start.ContactPerson',on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'Projects'
@@ -68,7 +69,6 @@ class Project(models.Model):
 
 
 class ContactPerson(models.Model):
-    organization = models.ForeignKey("start.Organization",on_delete=models.CASCADE)
     name = models.TextField()
     email = models.EmailField()
     phone = models.TextField()

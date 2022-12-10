@@ -35,43 +35,73 @@ def getStudent(request,pk):
 @login_required(login_url='/login')
 def profile(request):
     student = Student.objects.get(user = request.user)
-    content = {
-        "student" : student,
-        "user": request.user
-    }
+    if student.exists():
+        content = {
+            "type" : "student",
+            "student" : student,
+            "user": request.user
+        }
+
+    organization = Organization.Objects.get(user = request.user)
+    if organization.exists():
+        content = {
+            "type": "organization",
+            "organization" : organization,
+            "user": request.user
+        }
     return render(request, 'start/students.html',content)
 
 @login_required(login_url='/login')
-def cangeStudent(request):
+def cangeProfile(request):
     user = request.user
+    organization = Organization.get(user = user)
+    if organization.exists():
+        if request.method == "POST":
+                form = changeOrganizationForm(request.POST)
+                if form.is_valid():
+                    cd = form.cleaned_data
+                    user.username = cd["username"]
+                    user.email = cd["email"]
+                    user.phone = cd["phone"]
+                    organization.name = cd['name']
+                    organization.INN = cd["INN"]
+                    organization.save()
+                    user.save()
+                    return redirect('profile')
+        form = changeStudentForm(phone=user.phone, name = organization.name, INN = organization.INN,
+                                 email=user.email, username=user.username)
+        content = {
+            "form" : form,
+        }
     student = Student.objects.get(user=user)
-    if request.method == "POST":
-            form = changeStudentForm(request.POST, request.FILES)
-            if form.is_valid():
-                cd = form.cleaned_data
-                user.first_name = cd["first_name"]
-                user.last_name = cd["last_name"]
-                user.username = cd["username"]
-                user.email = cd["email"]
-                user.phone = cd["phone"]
-                student.image = cd["image"]
-                student.tags = cd["tags"]
-                student.CV = cd["CV"]
-                student.education = cd["education"]
-                student.department = cd["department"]
-                student.hardskill_softskill = cd["hardskill_softskill"]
-                student.experience = cd["experience"]
-                user.save()
-                student.save()
-                return redirect('profile')
-    form = changeStudentForm(first_name=user.first_name, last_name=user.last_name, phone=user.phone,
-                             email=user.email, username=user.username, image=students.image, tags=students.tags,
-                             CV=students.CV, education=students.education, department=students.department,
-                             hardskill_softskill=students.hardskill_softskill,
-                             experience=students.experience, )
-    content = {
-        "form" : form,
-    }
+    if student.exists():
+        if request.method == "POST":
+                form = changeStudentForm(request.POST, request.FILES)
+                if form.is_valid():
+                    cd = form.cleaned_data
+                    user.first_name = cd["first_name"]
+                    user.last_name = cd["last_name"]
+                    user.username = cd["username"]
+                    user.email = cd["email"]
+                    user.phone = cd["phone"]
+                    student.image = cd["image"]
+                    student.tags = cd["tags"]
+                    student.CV = cd["CV"]
+                    student.education = cd["education"]
+                    student.department = cd["department"]
+                    student.hardskill_softskill = cd["hardskill_softskill"]
+                    student.experience = cd["experience"]
+                    user.save()
+                    student.save()
+                    return redirect('profile')
+        form = changeStudentForm(first_name=user.first_name, last_name=user.last_name, phone=user.phone,
+                                 email=user.email, username=user.username, image=students.image, tags=students.tags,
+                                 CV=students.CV, education=students.education, department=students.department,
+                                 hardskill_softskill=students.hardskill_softskill,
+                                 experience=students.experience )
+        content = {
+            "form" : form,
+        }
     return render(request, 'start/students.html',content)
 
 @login_required(login_url='/login')
@@ -92,11 +122,13 @@ def getProject(request,pk):
 
 @login_required(login_url='/login')
 def addProject(request):
-    if Organization.objects.get(user = request.user).exists():
+    organization = Organization.objects.get(user = request.user)
+    if organization.exists():
         if request.method == "POST":
             form = addProjectForm(request.POST, request.FILES)
             if form.is_valid():
                 cd = form.cleaned_data
+                newContactPerson = ContactPerson(name = cd["contactPersonName"],email = cd["contactPersonEmail"], phone = cd["contactPersonPhone"]).save()
                 newProject = Project()
                 newProject.name = cd["name"]
                 newProject.definitions = cd["definitions"]
@@ -108,6 +140,9 @@ def addProject(request):
                 newProject.background = cd["background"]
                 newProject.result = cd["result"]
                 newProject.criterias = cd["criterias"]
+                newProject.organization = organization
+                newProject.contactPerson = newContactPerson
+                newProject.save()
                 if cd["tags"]:
                     newProject.tags = cd["tags"]
                 else:
