@@ -42,7 +42,7 @@ def profile(request):
             "user": request.user
         }
 
-    organization = Organization.Objects.get(user = request.user)
+    organization = Organization.objects.get(user = request.user)
     if organization.exists():
         content = {
             "type": "organization",
@@ -54,7 +54,7 @@ def profile(request):
 @login_required(login_url='/login')
 def cangeProfile(request):
     user = request.user
-    organization = Organization.get(user = user)
+    organization = Organization.objects.get(user = user)
     if organization.exists():
         if request.method == "POST":
                 form = changeOrganizationForm(request.POST)
