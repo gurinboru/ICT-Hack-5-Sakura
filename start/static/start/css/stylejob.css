@@ -63,3 +63,31 @@ body{
 .dwnld:hover{
     color: #52A874;
 }
+.form-control{
+  width: 100%;
+  outline: none;
+  border: 1px solid #d5dbd9;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.form-control:focus{
+  box-shadow: 0 0 0 0.2rem rgb(82, 168, 116);
+}
+.form-control1{
+  width: 25%;
+  outline: none;
+  border: 1px solid #d5dbd9;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.form-control1:focus{
+  box-shadow: 0 0 0 0.2rem rgb(82, 168, 116);
+}
+
+input[type=file] {
+	color: white;
+}

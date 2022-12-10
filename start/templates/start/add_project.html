@@ -1,48 +1,74 @@
 {% extends 'start/header.html' %}
 {% load static %}
 {% block content %}
-<body bgcolor="#76859B">
-<div class="overflow-hidden mt-8 mr-8 ml-8 mb-8 bg-white shadow sm:rounded-lg">
+<body>
+<div class="overflow-hidden mt-8 mr-8 ml-8 mb-8 bg-black">
   <div class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg font-medium leading-6 text-gray-900">Ваши данные</h3>
+    <h3 class="text-lg font-medium leading-6 text-white">Детали проекта</h3>
   </div>
     <form action="/add_candidate" enctype="multipart/form-data" method="POST">
 {% csrf_token %}
-  <div class="border-t border-gray-200">
+  <div class="border-t border-l border-r border-b border-white rounded">
     <dl>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">ФИО</dt>
+      <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Название проекта</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.name}}</dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Номер телефона</dt>
+      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Описание</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.definitions}}</dd>
       </div>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Предполагаемая позиция</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.position}}</dd>
+      <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Бюджет</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.budjet}}</dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Email</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.email}}</dd>
+      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Сроки</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.dedlines}}</dd>
       </div>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Пол</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.sex}}</dd>
+      <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Требуемые должности</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.positions}}</dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">День рождения</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.birthdate}}</dd>
+      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Техническое задание</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.techDocument}}</dd>
       </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Фото</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.photo}}</dd>
+        <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Цель проекта</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.goalOfProject}}</dd>
       </div>
-              <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Резюме</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.cv}}</dd>
-                <button type="submit" class="h-8 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium hover:text-white px-16 pl-16 hover:border-transparent rounded">Сохранить кандидата</button>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Опыт</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.background}}</dd>
       </div>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Ожидаемый результат</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.result}}</dd>
+      </div>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Критерии</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.criterias}}</dd>
+      </div>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Теги</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.tags}}</dd>
+      </div>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Контактное лицо</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.contactPersonName}}</dd>
+      </div>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Телефон контактного лица</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.contactPersonPhone}}</dd>
+      </div>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Email контактного лица</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.contactPersonEmail}}</dd>
+      </div>
+       <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <button type="submit" class="btn h-8 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium hover:text-white px-16 pl-16 hover:border-transparent rounded">Сохранить проект</button>
+       </div>
     </dl>
   </div>
     </form>
