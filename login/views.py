@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect
 from .forms import LoginForm, UserRegistrationForm
-
+from start.models import Organization,Student
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -31,6 +31,10 @@ def registration_user(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.is_active = True
             new_user.save()
+            if user_form.isOrganization:
+                Organization(user = new_user).save()
+            else:
+                Student(user = new_user).save()
             django.contrib.auth.login(request, new_user)
             return render(request, 'start/candidates.html')
         else:

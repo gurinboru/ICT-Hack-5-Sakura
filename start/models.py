@@ -50,7 +50,7 @@ class Project(models.Model):
     background = models.TextField()
     result = models.TextField()
     criterias = models.TextField()
-    tags = models.TextField()
+    tags = models.TextField(null=True)
     id_status = models.ForeignKey('start.StatusProject',on_delete=models.DO_NOTHING,db_column='id_status')
     status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
@@ -78,17 +78,17 @@ class Rialto(models.Model):
 
 class Organization(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    INN = models.IntegerField()
+    INN = models.IntegerField(null=True)
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    tags = models.TextField()
-    ISU = models.IntegerField()
-    CV = models.FileField()
-    education = models.TextField()
-    department = models.TextField()
-    hardskill_softskill = models.TextField()
-    experience = models.TextField()
+    tags = models.TextField(null=True)
+    ISU = models.IntegerField(null=True)
+    CV = models.FileField(null=True)
+    education = models.TextField(null=True)
+    department = models.TextField(null=True)
+    hardskill_softskill = models.TextField(null=True)
+    experience = models.TextField(null=True)
 
 class ApprovalPermission(models.Model):
     organization = models.ForeignKey("start.Organization",on_delete=models.CASCADE)
