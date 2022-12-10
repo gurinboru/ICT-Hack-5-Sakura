@@ -230,7 +230,7 @@ def addProject(request):
                 newProject.result = cd["result"]
                 newProject.criterias = cd["criterias"]
                 newProject.organization = organization
-                newProject.contactPerson = newContactPerson.id
+                newProject.contactPerson = newContactPerson
                 newProject.status_approval = StatusApproval.objects.get(status = StatusApproval.ToBeAgreed)
                 newProject.id_status = StatusProject.objects.get(status = StatusProject.OPEN)
                 newProject.save()
