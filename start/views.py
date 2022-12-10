@@ -11,12 +11,12 @@ def start(request):
 @login_required(login_url='/login')
 def getStudent(request):
     students = Student.objects.all()
-    user = User.objects.filter(id in students.user)
-    firstname = user.first_name
-    lastname = user.last_name
+    userID = []
+    for student in students:
+        userID.append(student.user.id)
+    user = User.objects.filter(id__in = userID).values('first_name', 'last_name')
     content = {
         "students" : students,
-        "firstname":firstname,
-        "lastname":lastname
+        "user":user
     }
     return render(request, 'start/students.html',content)
