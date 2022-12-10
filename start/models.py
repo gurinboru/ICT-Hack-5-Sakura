@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+def userPhoto_directory_path(instance, filename):
+    # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
+    return 'candidate/photo/' + filename
 class StatusApproval(models.Model):
     Agreed = 'Согласовано'
     ToBeAgreed = 'На согласовании'
@@ -82,6 +85,7 @@ class Organization(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=userPhoto_directory_path,default='media/default/photo_2022-12-10_14-15-39.jpg')
     tags = models.TextField(null=True)
     ISU = models.IntegerField(null=True)
     CV = models.FileField(null=True)
@@ -107,9 +111,7 @@ class StudentProject(models.Model):
 # def userCV_directory_path(instance, filename):
 #     return 'candidate/CV/' + filename
 #
-# def userPhoto_directory_path(instance, filename):
-#     # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
-#     return 'candidate/photo/' + filename
+
 
 # class ActionHistory(models.Model):
 #     job_seek = models.ForeignKey('JobSeek',on_delete=models.DO_NOTHING, db_column='job_seek')

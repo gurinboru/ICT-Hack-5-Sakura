@@ -9,14 +9,30 @@ def start(request):
     return render(request, 'start/start.html')
 
 @login_required(login_url='/login')
-def getStudent(request):
+def students(request):
     students = Student.objects.all()
-    userID = []
-    for student in students:
-        userID.append(student.user.id)
-    user = User.objects.filter(id__in = userID).values('first_name', 'last_name')
+    # Доделать
+    # userID = []
+    # for student in students:
+    #     userID.append(student.user.id)
+    # user = User.objects.filter(id__in = userID).values('first_name', 'last_name')
     content = {
         "students" : students,
-        "user":user
+    }
+    return render(request, 'start/students.html',content)
+
+@login_required(login_url='/login')
+def getStudent(request,pk):
+    student = Student.objects.get(pk)
+    content = {
+        "student" : student,
+    }
+    return render(request, 'start/students.html',content)
+
+@login_required(login_url='/login')
+def cangeStudent(request,pk):
+    student = Student.objects.get(pk)
+    content = {
+        "student" : student,
     }
     return render(request, 'start/students.html',content)
