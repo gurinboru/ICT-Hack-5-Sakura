@@ -1,7 +1,36 @@
-div.container p {
-    margin: 0;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%) }
+@font-face {
+	font-family: 'ALS Gorizont';
+	font-style: normal;
+	font-weight: normal;
+	src: local('ALS Gorizont'),
+		 url('/static/start/fonts/ALS Gorizont Variable.woff') format('woff'),
+		 url('/static/start/fonts/ALS Gorizont Variable.ttf') format('ttf');
+}
+
+
+
+*{
+    font-family: 'ALS Gorizont', sans-serif;
+}
+
+.btn {
+  background:  #221183;
+  color: #ffffff;
+  border-radius: 4px;
+}
+.btn:hover{
+  background: #52A874;
+  color: #000000;
+}
+.aheader{
+    margin-top: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.aheader:hover{
+    color: #52A874;
+}
+body{
+    background: black;
+}

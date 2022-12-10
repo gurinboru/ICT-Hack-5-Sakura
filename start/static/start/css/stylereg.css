@@ -115,3 +115,7 @@ body{
     flex-direction: row;
   }
 }
+
+.chk-box {
+  margin-bottom: 15px;
+}
