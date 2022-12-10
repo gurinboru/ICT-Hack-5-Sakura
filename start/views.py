@@ -216,6 +216,9 @@ def addRialto(request):
                 newRialto.status_approval = StatusApproval.objects.get(status=StatusApproval.ToBeAgreed)
                 newRialto.save()
                 return redirect('rialtos')
+            else:
+                messages.error(request,'Не валидная форма')
+                return redirect('rialtos')
         else:
             form = addRialtoForms()
             content = {

@@ -39,7 +39,7 @@ def registration_user(request):
             return redirect('students')
         else:
             messages.error(request, 'Аккаунт уже существует или введены неверные данные')
-        return render(request, 'login/registration.html', context={"form": user_form})
+            return render(request, 'login/registration.html', context={"form": user_form})
     user_form = UserRegistrationForm()
     return render(request, 'login/registration.html', context={"form": user_form})
 
