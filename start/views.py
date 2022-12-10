@@ -13,12 +13,16 @@ def start(request):
 
 @login_required(login_url='/login')
 def students(request):
+    user = User.objects.get(id = request.user.id)
+    # try:
+    #     organization = Organization.objects.get(user = user)
+    #     permission = ApprovalPermission.objects.filter(organization = organization)
+    #     s = ''
+    #     for perm in permission:
+    #         s = s + '"' + perm.field + '",'
+    #     students = Student.objects.all().values(s)
+    # except Organization.DoesNotExist:
     students = Student.objects.all()
-    # Доделать
-    # userID = []
-    # for student in students:
-    #     userID.append(student.user.id)
-    # user = User.objects.filter(id__in = userID).values('first_name', 'last_name')
     content = {
         "students" : students,
     }
@@ -53,7 +57,6 @@ def profile(request):
 
 @login_required(login_url='/login')
 def cangeProfile(request):
-
     user = User.objects.get(id = request.user.id)
     try:
         organization = Organization.objects.get(user = user)
@@ -158,6 +161,7 @@ def addProject(request):
                 newProject.criterias = cd["criterias"]
                 newProject.organization = organization
                 newProject.contactPerson = newContactPerson
+                newProject.status_approval = StatusApproval.objects.get(status = StatusApproval.ToBeAgreed)
                 newProject.save()
                 if cd["tags"]:
                     newProject.tags = cd["tags"]
@@ -172,4 +176,19 @@ def addProject(request):
         return render(request, 'start/addProject.html', content)
     except Organization.DoesNotExist:
         messages.error(request,'Нет прав доступа')
-        return redirect('login')
+        return redirect('projects')
+
+
+@login_required(login_url='/login')
+def requestStudentToProject(request,pk):
+    if request.method == "POST":
+        try:
+            student = Student.objects.get(user=request.user)
+            StudentProject(students = student, projects = Project.objects.get(pk = pk),statusApproval =StatusApproval.objects.get(status = StatusApproval.ToBeAgreed)).save()
+            messages.success(request, 'Ваша заявка принята')
+            redirect("projects")
+        except Student.DoesNotExist:
+            messages.error(request, 'Нет прав доступа')
+            return redirect('projects')
+    return redirect('projects')
+
