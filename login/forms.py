@@ -11,8 +11,7 @@ class UserRegistrationForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={ "class":"input"}))
     username = forms.CharField(widget=forms.TextInput(attrs={"class":"input"}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"input"}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={"class":"input"}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={"class":"input"}))
+    isOrganization = forms.CheckboxInput(attrs={"class":"input"})
     class Meta:
         model = User
         fields = ('username', 'email',"first_name","last_name"

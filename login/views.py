@@ -13,7 +13,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     django.contrib.auth.login(request, user)
-                    return redirect('/candidates')
+                    return redirect('/')
                 else:
                     messages.error(request, 'Disabled account')
             else:
