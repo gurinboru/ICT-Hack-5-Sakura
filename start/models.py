@@ -99,6 +99,7 @@ class ContactPerson(models.Model):
 
 class Rialto(models.Model):
     student = models.ForeignKey("start.Student",on_delete=models.CASCADE)
+    name = models.TextField()
     definitions = models.TextField()
     presentation = models.FileField(upload_to=userpresentationDocument_directory_path)
     status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
@@ -112,7 +113,7 @@ class Organization(models.Model):
     INN = models.IntegerField(null=True)
 
     def __str__(self):
-            return self.name
+            return str(self.id) + " " +self.name
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)

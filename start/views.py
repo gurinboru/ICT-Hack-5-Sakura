@@ -194,7 +194,7 @@ def getRialto(request,pk):
     content = {
         "rialto" : rialto,
     }
-    return render(request, 'start/get_rialto.html',content)
+    return render(request, 'start/currialto.html',content)
 
 @login_required(login_url='/login')
 def addRialto(request):
@@ -206,6 +206,7 @@ def addRialto(request):
             if form.is_valid():
                 cd = form.cleaned_data
                 newRialto = Rialto()
+                newRialto.name = cd['name']
                 newRialto.student = student
                 newRialto.definitions = cd['definitions']
                 newRialto.dedline = cd['dedline']

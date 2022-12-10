@@ -25,6 +25,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 admin.site.register(Organization, OrganizationAdmin)
 
 class ProjectAdmin(admin.ModelAdmin):
+    model = Project
     list_display = ('name', 'definitions', 'budjet','dedlines','positions','techDocument','goalOfProject','background','result','criterias','tags','id_status','status_approval','organization','contactPerson')
     list_filter = ['status_approval']
 
