@@ -66,7 +66,7 @@ class changeOrganizationForm(forms.Form):
                                required=True)
 
 class addRialtoForms(forms.Form):
-    name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Описание..."}),
+    name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Имя..."}),
                                required=True)
     definitions = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Описание..."}),
                                required=True)
