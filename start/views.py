@@ -157,13 +157,19 @@ def getProject(request,pk):
     user = User.objects.get(id = request.user.id)
     try:
         organization = Organization.objects.get(user=user)
-        if project.tags != None and project.organization == organization:
-            tags = project.tags.replace(",", "").split(' ')
-            recommendstudent = Student.objects.filter(tags__icontains=tags)
-            content = {
-                "recommendstudent" : recommendstudent,
-                "project": project,
-            }
+        if project.organization == organization:
+            if project.tags != None :
+                tags = project.tags.replace(",", "").split(' ')
+                recommendstudent = Student.objects.filter(tags__icontains=tags)
+                content = {
+                    "recommendstudent" : recommendstudent,
+                    "project": project,
+                }
+            else:
+                content = {
+                    "project": project,
+                }
+            return render(request, 'start/curproject.html', content)
     except Organization.DoesNotExist:
         content = {
             "project" : project,
