@@ -200,6 +200,13 @@ def addRialto(request):
                     newRialto.presentation = cd['presentation']
                 newRialto.status_approval = StatusApproval.objects.get(status=StatusApproval.ToBeAgreed)
                 newRialto.save()
+                return redirect('rialtos')
+        else:
+            form = addRialto()
+            content = {
+                "form": form,
+            }
+            return render(request, 'start/add_rialto.html',content)
     except Student.DoesNotExist:
         messages.error(request,'Нет прав доступа')
         return redirect('rialtos')

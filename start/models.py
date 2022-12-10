@@ -37,8 +37,9 @@ class StatusApproval(models.Model):
         verbose_name = 'StatusApproval'
         verbose_name_plural = 'StatusApproval'
 
-        def __str__(self):
-            return self.status
+    def __str__(self):
+        return self.status
+
 
 class StatusProject(models.Model):
     OPEN = 'Открыта'
@@ -56,8 +57,8 @@ class StatusProject(models.Model):
         verbose_name = 'StatusProject'
         verbose_name_plural = 'StatusProject'
 
-        def __str__(self):
-            return self.status
+    def __str__(self):
+        return self.status
 
 
 # Сущности ----------------------------------------------
@@ -93,6 +94,9 @@ class ContactPerson(models.Model):
     email = models.EmailField()
     phone = models.TextField()
 
+    def __str__(self):
+        return self.name
+
 class Rialto(models.Model):
     student = models.ForeignKey("start.Student",on_delete=models.CASCADE)
     definitions = models.TextField()
@@ -107,6 +111,12 @@ class Organization(models.Model):
     name = models.TextField()
     INN = models.IntegerField(null=True)
 
+    def __str__(self):
+        if self.name != None or self.name != "":
+            return self.name
+        else:
+            return self.id
+
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     phone = models.TextField(null=True)
@@ -119,10 +129,16 @@ class Student(models.Model):
     hardskill_softskill = models.TextField(null=True)
     experience = models.TextField(null=True)
 
+    def __str__(self):
+        return self.user.username
+
 class ApprovalPermission(models.Model):
     organization = models.ForeignKey("start.Organization",on_delete=models.CASCADE)
     field = models.TextField()
     statusApproval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.statusApproval
 
 class StudentProject(models.Model):
     students = models.ForeignKey("start.Student",on_delete=models.DO_NOTHING)

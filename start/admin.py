@@ -7,18 +7,29 @@ from .models import Organization,StatusProject, StatusApproval,Student,Project,S
 admin.site.register(StudentProject)
 admin.site.register(Rialto)
 admin.site.register(ApprovalPermission)
-admin.site.register(StatusApproval)
-admin.site.register(StatusProject)
+
+class StatusApprovalAdmin(admin.ModelAdmin):
+    model = StatusApproval
+    list_display = ('status',)
+
+admin.site.register(StatusApproval,StatusApprovalAdmin)
+
+class StatusProjectAdmin(admin.ModelAdmin):
+    model = StatusProject
+    list_display = ('status',)
+
+admin.site.register(StatusProject, StatusProjectAdmin)
 
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ('user', 'name', 'INN')
 admin.site.register(Organization, OrganizationAdmin)
+
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'definitions', 'budjet','dedlines','positions','techDocument','goalOfProject','background','result','criterias','tags','id_status','status_approval','organization','contactPerson')
     list_filter = ['status_approval']
 
     def get_readonly_fields(self, request, obj=None):
-        if obj and obj.type == 'status_approval':
+        if obj and obj.status_approval == StatusApproval.ToBeAgreed:
             return ['name', 'definitions', 'budjet','dedlines','positions','techDocument','goalOfProject','background','result','criterias','tags','id_status','status_approval','organization','contactPerson']
         # return ['name', 'definitions', 'budjet','dedlines','positions','techDocument','goalOfProject','background','result','criterias','tags','id_status','status_approval','organization','contactPerson']
 
