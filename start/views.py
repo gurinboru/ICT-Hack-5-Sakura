@@ -95,11 +95,11 @@ def cangeProfile(request):
                     user.save()
                     student.save()
                     return redirect('profile')
-            form = changeStudentForm(first_name=user.first_name, last_name=user.last_name, phone=students.phone,
-                                         email=user.email, username=user.username, image=students.image, tags=students.tags,
-                                         CV=students.CV, education=students.education, department=students.department,
-                                         hardskill_softskill=students.hardskill_softskill,
-                                         experience=students.experience )
+            form = changeStudentForm(first_name=user.first_name, last_name=user.last_name, phone=student.phone,
+                                         email=user.email, username=user.username, image=student.image, tags=student.tags,
+                                         CV=student.CV, education=student.education, department=student.department,
+                                         hardskill_softskill=student.hardskill_softskill,
+                                         experience=student.experience )
             content = {
                 "type": "student",
                 "form" : form,
