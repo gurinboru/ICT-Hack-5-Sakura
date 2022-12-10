@@ -202,7 +202,7 @@ def addRialto(request):
     try:
         student = Student.objects.get(user=user)
         if request.method == "POST":
-            form = addRialto(request.POST, request.FILES)
+            form = addRialtoForms(request.POST, request.FILES)
             if form.is_valid():
                 cd = form.cleaned_data
                 newRialto = Rialto()
