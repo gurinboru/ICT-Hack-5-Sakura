@@ -136,10 +136,14 @@ def projects(request):
                 "recommendprojects": recommendprojects,
                 "projects": projects,
             }
+            return render(request, 'start/students.html', content)
     except Student.DoesNotExist:
         content = {
             "projects" : projects,
         }
+    content = {
+        "projects": projects,
+    }
     return render(request, 'start/students.html',content)
 
 @login_required(login_url='/login')
@@ -189,6 +193,9 @@ def addRialto(request):
                 newRialto = Rialto()
                 newRialto.student = student
                 newRialto.definitions = cd['definitions']
+                newRialto.dedline = cd['dedline']
+                newRialto.FCF = cd['FCF']
+                newRialto.investment = cd['investment']
                 if cd['presentation'] != None:
                     newRialto.presentation = cd['presentation']
                 newRialto.status_approval = StatusApproval.objects.get(status=StatusApproval.ToBeAgreed)
@@ -196,6 +203,7 @@ def addRialto(request):
     except Student.DoesNotExist:
         messages.error(request,'Нет прав доступа')
         return redirect('rialtos')
+
 @login_required(login_url='/login')
 def addProject(request):
     try:
@@ -219,6 +227,7 @@ def addProject(request):
                 newProject.organization = organization
                 newProject.contactPerson = newContactPerson
                 newProject.status_approval = StatusApproval.objects.get(status = StatusApproval.ToBeAgreed)
+                newProject.id_status = StatusProject.objects.get(status = StatusProject.OPEN)
                 newProject.save()
                 if cd["tags"]:
                     newProject.tags = cd["tags"]

@@ -41,10 +41,13 @@ class StatusApproval(models.Model):
             return self.status
 
 class StatusProject(models.Model):
+    OPEN = 'Открыта'
+    CLOSE = 'Закрыта'
+    FREEZE = 'Заморожена'
     CHOICES = (
-        ('Открыта', 'Открыта'),
-        ('Закрыта', 'Закрыта'),
-        ('Заморожена', 'Заморожена')
+        (OPEN, 'Открыта'),
+        (CLOSE, 'Закрыта'),
+        (FREEZE, 'Заморожена')
     )
     status = models.CharField(choices=CHOICES, max_length=300)
 
@@ -95,6 +98,9 @@ class Rialto(models.Model):
     definitions = models.TextField()
     presentation = models.FileField(upload_to=userpresentationDocument_directory_path)
     status_approval = models.ForeignKey(StatusApproval,on_delete=models.DO_NOTHING)
+    investment = models.IntegerField()
+    dedline = models.DateField()
+    FCF = models.IntegerField()
 
 class Organization(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)

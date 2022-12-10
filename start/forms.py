@@ -68,3 +68,9 @@ class addRialto(forms.Form):
                                required=True)
     presentation = forms.FileField(widget=forms.FileInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
                        required=True)
+    investment = forms.IntegerField(widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+                       required=True)
+    dedline = forms.DateField(widget=forms.DateInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+                       required=True)
+    FCF = forms.IntegerField(widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+                       required=True)
