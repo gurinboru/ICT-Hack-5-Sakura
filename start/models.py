@@ -112,10 +112,7 @@ class Organization(models.Model):
     INN = models.IntegerField(null=True)
 
     def __str__(self):
-        if self.name != None or self.name != "":
             return self.name
-        else:
-            return self.id
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)

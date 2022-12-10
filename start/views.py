@@ -38,21 +38,26 @@ def getStudent(request,pk):
 
 @login_required(login_url='/login')
 def profile(request):
-    student = Student.objects.get(user = request.user)
-    if student.exists():
+    user = User.objects.get(id = request.user.id)
+    try:
+        student = Student.objects.get(user = request.user)
         content = {
             "type" : "student",
             "student" : student,
             "user": request.user
         }
 
-    organization = Organization.objects.get(user = request.user)
-    if organization.exists():
-        content = {
-            "type": "organization",
-            "organization" : organization,
-            "user": request.user
-        }
+    except Student.DoesNotExist:
+        try:
+            organization = Organization.objects.get(user = user)
+            content = {
+                "type": "organization",
+                "organization" : organization,
+                "user": request.user
+            }
+        except Organization.DoesNotExist:
+            messages.error(request,'Произошла ошибка')
+            redirect("404")
     return render(request, 'start/students.html',content)
 
 @login_required(login_url='/login')
@@ -152,7 +157,7 @@ def getProject(request,pk):
     user = User.objects.get(id = request.user.id)
     try:
         organization = Organization.objects.get(user=user)
-        if project.tags != None and project.organization == organization :
+        if project.tags != None and project.organization == organization:
             tags = project.tags.replace(",", "").split(' ')
             recommendstudent = Student.objects.filter(tags__icontains=tags)
             content = {
