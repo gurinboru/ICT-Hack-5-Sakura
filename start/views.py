@@ -125,20 +125,67 @@ def cangeProfile(request):
 
 @login_required(login_url='/login')
 def projects(request):
+    user = User.objects.get(id=request.user.id)
     projects = Project.objects.all()
-    content = {
-        "projects" : projects,
-    }
+    try:
+        student = Student.objects.get(user=user)
+        if student.tags != None:
+            tags = student.tags.replace(",","").split(' ')
+            recommendprojects = Project.objects.filter(tags__icontains= tags)
+            content = {
+                "recommendprojects": recommendprojects,
+                "projects": projects,
+            }
+    except Student.DoesNotExist:
+        content = {
+            "projects" : projects,
+        }
     return render(request, 'start/students.html',content)
 
 @login_required(login_url='/login')
 def getProject(request,pk):
     project = Project.objects.get(pk)
+
     content = {
         "project" : project,
     }
     return render(request, 'start/students.html',content)
 
+@login_required(login_url='/login')
+def rialtos(request):
+    rialtos = Rialto.objects.all()
+    content = {
+        "rialtos" : rialtos,
+    }
+    return render(request, 'start/realtos.html',content)
+
+@login_required(login_url='/login')
+def getRialto(request,pk):
+    rialto = Rialto.objects.get(pk)
+    content = {
+        "rialto" : rialto,
+    }
+    return render(request, 'start/get_rialto.html',content)
+
+@login_required(login_url='/login')
+def addRialto(request):
+    user = User.objects.get(id=request.user.id)
+    try:
+        student = Student.objects.get(user=user)
+        if request.method == "POST":
+            form = addRialto(request.POST, request.FILES)
+            if form.is_valid():
+                cd = form.cleaned_data
+                newRialto = Rialto()
+                newRialto.student = student
+                newRialto.definitions = cd['definitions']
+                if cd['presentation'] != None:
+                    newRialto.presentation = cd['presentation']
+                newRialto.status_approval = StatusApproval.objects.get(status=StatusApproval.ToBeAgreed)
+                newRialto.save()
+    except Student.DoesNotExist:
+        messages.error(request,'Нет прав доступа')
+        return redirect('rialtos')
 @login_required(login_url='/login')
 def addProject(request):
     try:

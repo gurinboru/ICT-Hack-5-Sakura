@@ -63,3 +63,8 @@ class changeOrganizationForm(forms.Form):
     INN = forms.IntegerField(widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "INN"}),
                                required=True)
 
+class addRialto(forms.Form):
+    definitions = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Contact people"}),
+                               required=True)
+    presentation = forms.FileField(widget=forms.FileInput(attrs={"class": "form-control", "placeholder": "01.01.1999"}),
+                       required=True)

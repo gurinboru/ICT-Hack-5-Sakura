@@ -3,7 +3,11 @@ from django.db import models
 
 def userPhoto_directory_path(instance, filename):
     # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
-    return 'candidate/photo/' + filename
+    return 'students/photo/' + filename
+
+def usertechDocument_directory_path(instance, filename):
+    # путь, куда будет осуществлена загрузка MEDIA_ROOT/user_<id>/<filename>
+    return 'techdocument/' + filename
 class StatusApproval(models.Model):
     Agreed = 'Согласовано'
     ToBeAgreed = 'На согласовании'
@@ -48,7 +52,7 @@ class Project(models.Model):
     budjet = models.IntegerField()
     dedlines = models.IntegerField()
     positions = models.TextField()
-    techDocument = models.FileField()
+    techDocument = models.FileField(upload_to=usertechDocument_directory_path)
     goalOfProject = models.TextField()
     background = models.TextField()
     result = models.TextField()
