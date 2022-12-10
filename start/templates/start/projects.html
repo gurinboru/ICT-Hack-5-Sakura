@@ -2,23 +2,24 @@
 {% load static %}
 {% block content %}
     <body >
-        <section class="min-h-screen body-font text-gray-600 ">
-        <div class="container mx-auto px-5 py-10">
-        <div class="-m-4 flex flex-wrap">
-            {% for project in projects %}
-            <div class="w-full p-4 md:w-1/2 lg:w-1/4">
-              <a href="curproject/{{ project.id }}" class="scale1  relative block h-48 overflow-hidden rounded">
-               <!--<img alt="ecommerce" class="block h-full w-full object-cover object-center cursor-pointer" src="{{ student.image.url }}" />-->
-              </a>
-              <div class="card-info mt-4">
-                <h1 class="title-font text-xl font-medium">{{ project.name }}</h1>
-                    <h2 class="title-font text-lg font-medium">{{ project.organization }}</h2>
-              </div>
-            </div>
-            {% endfor %}
+        <div class=container style="position:relative">
+        {% for project in projects %}
+                <a href="curproject/{{ project.id }}">
+                <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                <dl>
+                <div class="bg-gray-50 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
+                    <dt class="text-xl font-medium text-gray-900">{{ project.name }}</dt>
+                </div>
+                <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
+                    <dt class="text-sm font-medium text-gray-900">{{ project.organization }}</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">От {{ project.budjet }}</dd>
+                </div>
+                </dl>
+                </div>
+                </a>
+            </dl>
+        {% endfor %}
         </div>
-        </div>
-        </section>
     </body>
 {% endblock %}
 {% block title %}
