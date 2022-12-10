@@ -14,14 +14,6 @@
           Регистрация
         </div>
         <div class="form">
-           <div class="inputfield">
-              <label>Фамилия</label>
-              {{form.last_name}}
-           </div>
-            <div class="inputfield">
-              <label>Имя</label>
-              {{form.first_name}}
-           </div>
             <div class="inputfield">
               <label>UserName</label>
               {{form.username}}
@@ -31,6 +23,11 @@
               <label>Email</label>
               {{form.email}}
            </div>
+            <div>
+
+                <label style="color: white">Аккаунт для организации</label>
+                    {{ form.isOrganization }}
+            </div>
              <div class="inputfield">
               <label>Пароль</label>
               {{form.password}}

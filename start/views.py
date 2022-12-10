@@ -11,7 +11,7 @@ def start(request):
 @login_required(login_url='/login')
 def getStudent(request):
     students = Student.objects.all()
-    user = User.objects.get(id = students.user)
+    user = User.objects.filter(id in students.user)
     firstname = user.first_name
     lastname = user.last_name
     content = {

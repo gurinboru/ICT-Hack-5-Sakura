@@ -31,12 +31,12 @@ def registration_user(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.is_active = True
             new_user.save()
-            if user_form.isOrganization == True:
+            if user_form.cleaned_data['isOrganization'] == True:
                 Organization(user = new_user).save()
             else:
                 Student(user = new_user).save()
             django.contrib.auth.login(request, new_user)
-            return render(request, 'start/candidates.html')
+            return render(request, 'start/students.html')
         else:
             messages.error(request, 'Аккаунт уже существует или введены неверные данные')
         return render(request, 'login/registration.html', context={"form": user_form})
