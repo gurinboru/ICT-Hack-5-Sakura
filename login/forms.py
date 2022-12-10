@@ -14,8 +14,7 @@ class UserRegistrationForm(forms.ModelForm):
     isOrganization = forms.CheckboxInput(attrs={"class":"input"})
     class Meta:
         model = User
-        fields = ('username', 'email',"first_name","last_name"
-                  )
+        fields = ('username', 'email')
 
     def clean_password2(self):
         cd = self.cleaned_data
