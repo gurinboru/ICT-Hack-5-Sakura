@@ -173,7 +173,7 @@ def addProject(request):
         content = {
             "form": form,
         }
-        return render(request, 'start/addProject.html', content)
+        return render(request, 'start/add_project.html', content)
     except Organization.DoesNotExist:
         messages.error(request,'Нет прав доступа')
         return redirect('projects')

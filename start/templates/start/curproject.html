@@ -4,35 +4,31 @@
 <body>
     <div class="overflow-hidden bg-black shadow sm:rounded-lg">
   <div class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg font-medium leading-6 text-white">Информация о студенте</h3>
-    <p class="mt-1 max-w-2xl text-sm text-white">Личные данные и заявка</p>
+    <h3 class="text-lg font-medium leading-6 text-white">Информация о проекте</h3>
+      <p class="mt-1 max-w-2xl text-sm text-white">Компания: {{ project.organization }}</p>
       <img src="{{ student.image.url }}" width="200" height="200" class="rounded">
   </div>
   <div>
     <dl>
       <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-purple">Фамилия Имя</dt>
-        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.user.last_name }} {{ student.user.first_name }}</dd>
+        <dt class="text-sm font-medium text-purple">Название</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ project.name }}</dd>
       </div>
         <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-purple">Образование</dt>
-        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.education }}</dd>
+        <dt class="text-sm font-medium text-purple">Описание</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ project.definitions }}</dd>
       </div>
         <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-purple">Факультет</dt>
-        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.department }}</dd>
+        <dt class="text-sm font-medium text-purple">Бюджет</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ project.budjet }}</dd>
       </div>
       <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-purple">Опыт</dt>
-        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.experience }}</dd>
+        <dt class="text-sm font-medium text-purple">Сроки</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ project.dedlines }}</dd>
       </div>
       <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-purple">Номер ИСУ</dt>
-        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.ISU }}</dd>
-      </div>
-      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-purple">Навыки</dt>
-        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.hardskill_softskill }}</dd>
+        <dt class="text-sm font-medium text-purple">Цель</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ project.goalOfProject }}</dd>
       </div>
       <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-purple">Вложения (CV)</dt>
@@ -54,7 +50,7 @@
         </dd>
       </div>
       <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 gap-1 sm:px-6">
-        <dt class="text-sm font-medium text-purple">Способы связи</dt>
+        <dt class="text-sm font-medium text-purple">Контактное лицо</dt>
         <div class="grid grid-cols-6">
           <a href="https://t.me/+{{ candidate.phone }}">
         <img src="https://img.icons8.com/color/48/null/telegram-app--v1.png"/>
