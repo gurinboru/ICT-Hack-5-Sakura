@@ -167,7 +167,7 @@ def rialtos(request):
     content = {
         "rialtos" : rialtos,
     }
-    return render(request, 'start/realtos.html',content)
+    return render(request, 'start/rialtos.html',content)
 
 @login_required(login_url='/login')
 def getRialto(request,pk):
@@ -248,4 +248,3 @@ def requestStudentToProject(request,pk):
             messages.error(request, 'Нет прав доступа')
             return redirect('projects')
     return redirect('projects')
-

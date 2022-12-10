@@ -9,4 +9,5 @@ urlpatterns = [
     path('curproject/<int:pk>', views.getProject, name='curproject'),
     path('add_project', views.addProject),
     path('profile', views.cangeProfile, name='profile'),
+    path('rialtos', views.rialtos, name='rialtos'),
 ]
