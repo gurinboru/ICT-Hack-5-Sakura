@@ -212,7 +212,12 @@ def addProject(request):
             form = addProjectForm(request.POST, request.FILES)
             if form.is_valid():
                 cd = form.cleaned_data
-                newContactPerson = ContactPerson(name = cd["contactPersonName"],email = cd["contactPersonEmail"], phone = cd["contactPersonPhone"]).save()
+                newContactPerson = ContactPerson()
+                newContactPerson.name = cd["contactPersonName"]
+                newContactPerson.email = cd["contactPersonEmail"]
+                newContactPerson.phone = cd["contactPersonPhone"]
+                newContactPerson.save()
+
                 newProject = Project()
                 newProject.name = cd["name"]
                 newProject.definitions = cd["definitions"]
