@@ -36,7 +36,7 @@ def registration_user(request):
             else:
                 Student(user = new_user).save()
             django.contrib.auth.login(request, new_user)
-            return render(request, 'start/students.html')
+            return redirect('students')
         else:
             messages.error(request, 'Аккаунт уже существует или введены неверные данные')
         return render(request, 'login/registration.html', context={"form": user_form})

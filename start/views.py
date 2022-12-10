@@ -53,7 +53,8 @@ def profile(request):
 
 @login_required(login_url='/login')
 def cangeProfile(request):
-    user = request.user
+
+    user = User.objects.get(id = request.user.id)
     try:
         organization = Organization.objects.get(user = user)
         if request.method == "POST":
@@ -67,8 +68,11 @@ def cangeProfile(request):
                     organization.save()
                     user.save()
                     return redirect('profile')
-        form = changeOrganizationForm(name = organization.name, INN = organization.INN,
-                                     email=user.email, username=user.username)
+        form = changeOrganizationForm(initial={
+            "name" : organization.name,
+            "INN" : organization.INN,
+            "email":user.email,
+            "username":user.username})
         content = {
             "type": "organization",
             "form" : form,
@@ -95,18 +99,26 @@ def cangeProfile(request):
                     user.save()
                     student.save()
                     return redirect('profile')
-            form = changeStudentForm(first_name=user.first_name, last_name=user.last_name, phone=student.phone,
-                                         email=user.email, username=user.username, image=student.image, tags=student.tags,
-                                         CV=student.CV, education=student.education, department=student.department,
-                                         hardskill_softskill=student.hardskill_softskill,
-                                         experience=student.experience )
+            form = changeStudentForm(initial={
+                "first_name":user.first_name,
+                "last_name":user.last_name,
+                "phone":student.phone,
+                "email":user.email,
+                "username":user.username,
+                "image":student.image,
+                "tags":student.tags,
+                "CV":student.CV,
+                "education":student.education,
+                "department":student.department,
+                "hardskill_softskill":student.hardskill_softskill,
+                "experience":student.experience })
             content = {
                 "type": "student",
                 "form" : form,
             }
         except Student.DoesNotExist:
             redirect('404')
-    return render(request, 'start/students.html',content)
+    return render(request, 'start/profile.html',content)
 
 @login_required(login_url='/login')
 def projects(request):
