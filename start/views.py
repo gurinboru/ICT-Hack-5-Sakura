@@ -190,7 +190,7 @@ def rialtos(request):
 
 @login_required(login_url='/login')
 def getRialto(request,pk):
-    rialto = Rialto.objects.get(pk)
+    rialto = Rialto.objects.get(pk = pk)
     content = {
         "rialto" : rialto,
     }
