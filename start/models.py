@@ -85,7 +85,7 @@ class Organization(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=userPhoto_directory_path,default='media/default/photo_2022-12-10_14-15-39.jpg')
+    image = models.ImageField(upload_to=userPhoto_directory_path,default='default/photo_2022-12-10_14-15-39.jpg')
     tags = models.TextField(null=True)
     ISU = models.IntegerField(null=True)
     CV = models.FileField(null=True)
