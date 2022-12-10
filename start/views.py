@@ -67,7 +67,7 @@ def cangeProfile(request):
                     organization.save()
                     user.save()
                     return redirect('profile')
-        form = changeOrganizationForm(phone=user.phone, name = organization.name, INN = organization.INN,
+        form = changeOrganizationForm(name = organization.name, INN = organization.INN,
                                      email=user.email, username=user.username)
         content = {
             "type": "organization",
@@ -95,7 +95,7 @@ def cangeProfile(request):
                     user.save()
                     student.save()
                     return redirect('profile')
-            form = changeStudentForm(first_name=user.first_name, last_name=user.last_name, phone=user.phone,
+            form = changeStudentForm(first_name=user.first_name, last_name=user.last_name, phone=students.phone,
                                          email=user.email, username=user.username, image=students.image, tags=students.tags,
                                          CV=students.CV, education=students.education, department=students.department,
                                          hardskill_softskill=students.hardskill_softskill,
