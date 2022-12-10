@@ -202,7 +202,7 @@ def addRialto(request):
                 newRialto.save()
                 return redirect('rialtos')
         else:
-            form = addRialto()
+            form = addRialtoForms()
             content = {
                 "form": form,
             }
