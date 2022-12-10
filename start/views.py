@@ -91,10 +91,11 @@ def cangeProfile(request):
                     user.last_name = cd["last_name"]
                     user.email = cd["email"]
                     student.phone = cd["phone"]
-                    if cd["image"] != '':
+                    if cd["image"] != None:
                         student.image = cd["image"]
                     student.tags = cd["tags"]
-                    student.CV = cd["CV"]
+                    if cd["CV"] != None:
+                        student.CV = cd["CV"]
                     student.education = cd["education"]
                     student.department = cd["department"]
                     student.hardskill_softskill = cd["hardskill_softskill"]
