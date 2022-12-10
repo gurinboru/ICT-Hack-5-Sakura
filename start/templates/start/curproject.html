@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <body>
-    <div class="overflow-hidden bg-black shadow sm:rounded-lg">
+    <div class="overflow-hidden bg-black border-t border-l border-r border-b border-white rounded">
   <div class="px-4 py-5 sm:px-6">
     <h3 class="text-lg font-medium leading-6 text-white">Информация о проекте</h3>
       <p class="mt-1 max-w-2xl text-sm text-white">Компания: {{ project.organization }}</p>
@@ -50,10 +50,10 @@
       <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 gap-1 sm:px-6">
         <dt class="text-sm font-medium text-purple">Контактное лицо</dt>
         <div class="grid grid-cols-6">
-          <a href="https://t.me/+{{ contactPersonPhone.phone }}">
+          <a href="https://t.me/+{{ project.contactPerson.phone }}">
         <img src="https://img.icons8.com/color/48/null/telegram-app--v1.png"/>
             </a>
-          <a href="https://wa.me/{{ contactPersonPhone.phone }}">
+          <a href="https://wa.me/{{ project.contactPerson.phone }}">
         <img src="https://img.icons8.com/color/48/null/whatsapp--v1.png"/>
             </a>
           </div>

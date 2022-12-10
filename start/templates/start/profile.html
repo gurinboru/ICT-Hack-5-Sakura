@@ -10,16 +10,16 @@
             {% csrf_token %}
                 <div class="wrapper">
                     <div class="title">
-                      Информация о профиле
+                      Информация о студенте
                     </div>
                     <div class="form">
                         <div class="inputfield">
-                          <label>First Name</label>
+                          <label>Имя</label>
                           {{form.first_name}}
                        </div>
 
                         <div class="inputfield">
-                          <label>Last Name</label>
+                          <label>Фамилия</label>
                           {{form.last_name}}
                        </div>
 
@@ -29,12 +29,12 @@
                        </div>
 
                         <div class="inputfield">
-                          <label>Phone</label>
+                          <label>Телефон</label>
                           {{form.phone}}
                        </div>
 
                         <div class="inputfield">
-                          <label>Image</label>
+                          <label>Фото профиля</label>
                           {{form.image}}
                        </div>
 
@@ -44,32 +44,32 @@
                        </div>
 
                       <div class="inputfield">
-                          <label>ISU</label>
+                          <label>ИСУ</label>
                           {{form.ISU}}
                        </div>
 
                         <div class="inputfield">
-                          <label>Tags</label>
+                          <label>Теги</label>
                           {{form.tags}}
                        </div>
 
                         <div class="inputfield">
-                          <label>Education</label>
+                          <label>Образование</label>
                           {{form.education}}
                        </div>
 
                         <div class="inputfield">
-                          <label>Department</label>
+                          <label>Факультет</label>
                           {{form.department}}
                        </div>
 
                         <div class="inputfield">
-                          <label>Skills</label>
+                          <label>Навыки</label>
                           {{form.hardskill_softskill}}
                        </div>
 
                         <div class="inputfield">
-                          <label>Experience</label>
+                          <label>Опыт</label>
                           {{form.experience}}
                        </div>
 

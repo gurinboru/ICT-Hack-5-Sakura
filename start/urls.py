@@ -8,6 +8,7 @@ urlpatterns = [
     path('curstudent/<int:pk>', views.getStudent, name='curstudent'),
     path('curproject/<int:pk>', views.getProject, name='curproject'),
     path('add_project', views.addProject),
+    path('add_rialto', views.addRialto),
     path('profile', views.cangeProfile, name='profile'),
     path('rialtos', views.rialtos, name='rialtos'),
     path('currialto/<int:pk>', views.getRialto, name='currialto')
