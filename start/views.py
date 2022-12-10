@@ -54,7 +54,7 @@ def profile(request):
 @login_required(login_url='/login')
 def cangeProfile(request):
     user = request.user
-    organization = Organization.objects.get(user = user)
+    organization = Organization.objects.filter(user = user).first()
     if organization.exists():
         if request.method == "POST":
                 form = changeOrganizationForm(request.POST)
@@ -74,7 +74,7 @@ def cangeProfile(request):
             "type": "organization",
             "form" : form,
         }
-    student = Student.objects.get(user=user)
+    student = Student.objects.filter(user=user).first()
     if student.exists():
         if request.method == "POST":
                 form = changeStudentForm(request.POST, request.FILES)
@@ -124,7 +124,7 @@ def getProject(request,pk):
 
 @login_required(login_url='/login')
 def addProject(request):
-    organization = Organization.objects.get(user = request.user)
+    organization = Organization.objects.filter(user = request.user).first()
     if organization.exists():
         if request.method == "POST":
             form = addProjectForm(request.POST, request.FILES)
