@@ -148,7 +148,7 @@ def projects(request):
 
 @login_required(login_url='/login')
 def getProject(request,pk):
-    project = Project.objects.get(pk)
+    project = Project.objects.get(id = pk)
     user = User.objects.get(id = request.user.id)
     try:
         organization = Organization.objects.get(user=user)
