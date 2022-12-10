@@ -23,11 +23,11 @@ def students(request):
 
 @login_required(login_url='/login')
 def getStudent(request,pk):
-    student = Student.objects.get(pk)
+    student = Student.objects.get(id = pk)
     content = {
         "student" : student,
     }
-    return render(request, 'start/students.html',content)
+    return render(request, 'start/curstudent.html',content)
 
 @login_required(login_url='/login')
 def cangeStudent(request,pk):
