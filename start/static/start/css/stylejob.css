@@ -6,9 +6,6 @@
 		 url('/static/start/fonts/ALS Gorizont Variable.woff') format('woff'),
 		 url('/static/start/fonts/ALS Gorizont Variable.ttf') format('ttf');
 }
-
-
-
 *{
     font-family: 'ALS Gorizont', sans-serif;
 }
@@ -42,4 +39,27 @@ body{
 .btn2:hover{
   background: #52A874;
   color: #000000;
+}
+
+.card-info{
+    color: white;
+}
+.scale1 {
+    transition: 1s; /* Время эффекта */
+}
+.scale1:hover {
+    transform: scale(1.05); /* Увеличиваем масштаб */
+    box-shadow: 0 0 0 0.2rem rgb(82, 168, 116);
+}
+.background-black{  background-color: #000000;}
+.background-blue{  background-color: #221183;}
+.background-green{  background-color: #52A874;}
+.background-purple{  background-color: #7B45EC;}
+.text-black{  color: #000000;}
+.text-blue{  color: #221183;}
+.text-green{  color: #52A874;}
+.text-purple{  color: #7B45EC;}
+
+.dwnld:hover{
+    color: #52A874;
 }

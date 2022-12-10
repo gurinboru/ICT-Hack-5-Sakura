@@ -10,7 +10,7 @@
     <link href="https://unpkg.com/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="static/start/css/stylejob.css">
+    <link rel="stylesheet" href={% static 'start/css/stylejob.css' %}>
     <title>
         {% block title%}
         {% endblock %}
@@ -24,7 +24,7 @@
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
-            <a href="/candidates" class="aheader text-white-300">[Студенты]</a>
+            <a href="/students" class="aheader text-white-300">[Студенты]</a>
             <a href="/jobs" class="aheader text-white-300">[Проекты]</a>
             <a href="/jobseek" class="aheader text-white-300">[Биржа]</a>
             <a href="/parser" class="aheader text-white-300">[Получить данные из файла?]</a>

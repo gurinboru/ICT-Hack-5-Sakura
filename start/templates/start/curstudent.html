@@ -1,41 +1,41 @@
 {% extends 'start/header.html' %}
 {% load static %}
 {% block content %}
-<body bgcolor='white'>
-    <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+<body>
+    <div class="overflow-hidden bg-black shadow sm:rounded-lg">
   <div class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg font-medium leading-6 text-gray-900">Информация о кандидате</h3>
-    <p class="mt-1 max-w-2xl text-sm text-gray-500">Личные данные и заявка.</p>
+    <h3 class="text-lg font-medium leading-6 text-white">Информация о кандидате</h3>
+    <p class="mt-1 max-w-2xl text-sm text-white">Личные данные и заявка.</p>
       <img src="{{ student.image.url }}" width="200" height="200">
   </div>
-  <div class="border-t border-gray-200">
+  <div>
     <dl>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">ФИО</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ student.user.first_.name }}</dd>
+      <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Фамилия Имя</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.user.last_name }} {{ student.user.first_name }}</dd>
       </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Образование</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ student.education }}</dd>
+        <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Образование</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.education }}</dd>
       </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Факультет</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ student.department }}</dd>
+        <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Факультет</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.department }}</dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Опыт</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ student.experience }}</dd>
+      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Опыт</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.experience }}</dd>
       </div>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Номер ИСУ</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ student.ISU }}</dd>
+      <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Номер ИСУ</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.ISU }}</dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Навыки</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ student.hardskill_softskill }}</dd>
+      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Навыки</dt>
+        <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ student.hardskill_softskill }}</dd>
       </div>
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Вложения (CV)</dt>
+      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Вложения (CV)</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
           <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
             <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
@@ -47,14 +47,14 @@
                 <span class="ml-2 w-0 flex-1 truncate">{{ student.cv }}</span>
               </div>
               <div class="ml-4 flex-shrink-0">
-                <a href="get_cv/{{ student.id }}" class="font-medium text-indigo-600 hover:text-indigo-500">Скачать</a>
+                <a href="get_cv/{{ student.id }}" class="dwnld font-medium text-blue">Скачать</a>
               </div>
             </li>
           </ul>
         </dd>
       </div>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 gap-1 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Способы связи</dt>
+      <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 gap-1 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Способы связи</dt>
         <div class="grid grid-cols-6">
           <a href="https://t.me/+{{ candidate.phone }}">
         <img src="https://img.icons8.com/color/48/null/telegram-app--v1.png"/>

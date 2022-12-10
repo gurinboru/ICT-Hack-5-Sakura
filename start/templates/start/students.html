@@ -12,13 +12,13 @@
         <div class="-m-4 flex flex-wrap">
             {% for student in students %}
             <div class="w-full p-4 md:w-1/2 lg:w-1/4">
-              <a href="curstudent/{{ student.id }}" class="relative block h-48 overflow-hidden rounded">
+              <a href="curstudent/{{ student.id }}" class="scale1  relative block h-48 overflow-hidden rounded">
                 <img alt="ecommerce" class="block h-full w-full object-cover object-center cursor-pointer" src="{{ student.image.url }}" />
               </a>
-              <div class="mt-4">
-                <h1 class="title-font text-xl font-medium text-black">{{ student.user.first_name }}</h1>
-                  <h2 class="title-font mb-1 text-lg tracking-widest text-gray-800">{{ student.user.last_name }}</h2>
-                    <h2 class="title-font text-lg font-medium text-gray-800">{{ student.education }}</h2>
+              <div class="card-info mt-4">
+                <h1 class="title-font text-xl font-medium">{{ student.user.first_name }}</h1>
+                  <h2 class="title-font mb-1 text-lg tracking-widest">{{ student.user.last_name }}</h2>
+                    <h2 class="title-font text-lg font-medium">{{ student.education }}</h2>
               </div>
             </div>
             {% endfor %}
