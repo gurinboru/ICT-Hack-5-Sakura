@@ -159,7 +159,7 @@ def projects(request):
         else:
             content = {
                 "type": "student",
-                "project": projects,
+                "projects": projects,
             }
         return render(request, 'start/projects.html', content)
     except Student.DoesNotExist:
