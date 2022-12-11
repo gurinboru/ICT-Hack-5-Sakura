@@ -36,7 +36,7 @@ def getStudent(request,pk):
         fields=[]
         for perm in permission:
             fields.append(perm.field)
-        student = Student.objects.get(id=pk)
+        student = Student.objects.values(reduce(',', [field for field in fields])).get(id=pk)
         content = {
             "student": student,
         }
@@ -208,10 +208,10 @@ def getProject(request,pk):
     try:
         organization = Organization.objects.get(user=user)
         if project.organization == organization:
+            seekStudent = StudentProject.objects.filter(project in project).values('students')
             if project.tags != None and project.tags != "":
                 tags = project.tags.replace(",", "").split(' ')
                 recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.Agreed)
-                seekStudent = StudentProject.objects.filter(project in project).values('students')
                 content = {
                     "type":"organization",
                     "recommendstudent" : recommendstudent,
@@ -220,6 +220,7 @@ def getProject(request,pk):
                 }
             else:
                 content = {
+                    "seekStudent": seekStudent
                     "type": "organization",
                     "project": project,
                 }
