@@ -3,6 +3,25 @@
 {% block content %}
     <body >
         <div class=container style="position:relative">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Рекомендуемые проекты</h2>
+            {% for recommendproject in recommendprojects %}
+                <a href="curproject/{{ recommendproject.id }}">
+                <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                <dl>
+                <div class="bg-gray-50 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
+                    <dt class="text-xl font-medium text-gray-900">{{ recommendproject.name }}</dt>
+                </div>
+                <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
+                    <dt class="text-sm font-medium text-gray-900">{{ recommendproject.organization }}</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">От {{ recommendproject.budjet }}</dd>
+                </div>
+                </dl>
+                </div>
+                </a>
+            </dl>
+            {% endfor %}
+
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Все проекты</h2>
         {% for project in projects %}
                 <a href="curproject/{{ project.id }}">
                 <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
