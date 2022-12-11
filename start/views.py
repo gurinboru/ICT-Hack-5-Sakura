@@ -109,6 +109,7 @@ def cangeProfile(request):
                     user.last_name = cd["last_name"]
                     user.email = cd["email"]
                     student.phone = cd["phone"]
+                    student.ISU = cd["ISU"]
                     if cd["image"] != None:
                         student.image = cd["image"]
                     student.tags = cd["tags"]
