@@ -212,10 +212,12 @@ def getProject(request,pk):
             if project.tags != None and project.tags != "":
                 tags = project.tags.replace(",", "").split(' ')
                 recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]))
+                seekStudent = StudentProject.objects.filter(project = project).values('students')
                 content = {
                     "type":"organization",
                     "recommendstudent" : recommendstudent,
                     "project": project,
+                    "seekStudent":seekStudent
                 }
             else:
                 content = {
@@ -356,6 +358,31 @@ def requestStudentToProject(request,pk):
             return redirect('projects')
     return redirect('projects')
 
+
 @login_required(login_url='/login')
-def myApplications(request):
-    return render(request, 'start/myapplications.html')
+def studentOnProject(request):
+    try:
+        student = Student.objects.get(user=request.user)
+        studentProject = StudentProject.objects.filter(students = student)
+        content = {
+            "type": 'student',
+            "studentProject": studentProject,
+        }
+        return  render(request, 'start/myapplications.html', content)
+    except Student.DoesNotExist:
+        messages.error(request, 'Нет прав доступа')
+        return redirect('students')
+
+@login_required(login_url='/login')
+def getMyProject(request):
+    try:
+        organization = Organization.objects.get(user=request.user)
+        projects = Project.objects.filter(organization=organization)
+        content = {
+            "type": 'organisation',
+            "form": projects,
+        }
+        return  render(request, 'start/myprojects.html', content)
+    except Organization.DoesNotExist:
+        messages.error(request, 'Нет прав доступа')
+        return redirect('students')
