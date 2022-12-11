@@ -32,17 +32,17 @@ def students(request):
 def getStudent(request,pk):
     try:
         organization = Organization.objects.get(user=request.user)
-        permission = ApprovalPermission.objects.filter(organization = organization)
-        fields=[]
-        for perm in permission:
-            fields.append(perm.field)
-        student = Student.objects.values(reduce(',', [field for field in fields])).get(id=pk)
+        # permission = ApprovalPermission.objects.filter(organization = organization)
+        # query = Q()
+        # for perm in permission:
+        #     query.add(perm)
+        student = Student.objects.get(id=pk)
         content = {
             "student": student,
         }
         content["type"] = "organization"
     except Organization.DoesNotExist:
-        students = Student.objects.all().only('education', 'user__first_name', 'user__last_name', 'image')
+        student = Student.objects.only('education', 'user__first_name', 'user__last_name', 'image').get(id=pk)
         content = {
             "student": student,
         }
