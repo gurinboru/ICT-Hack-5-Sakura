@@ -28,12 +28,17 @@
             <a href="/students" class="aheader text-white-300">[Студенты]</a>
             <a href="/projects" class="aheader text-white-300">[Проекты]</a>
             <a href="/rialtos" class="aheader text-white-300">[Биржа]</a>
+            {% if type == 'student' %}
+                <a href="/add_rialto" class="aheader text-purple">[Добавить проект на Биржу]</a>
+            {%  elif type == 'organization' %}
+                <a href="/add_project" class="aheader text-purple">[Добавить проект]</a>
+            {% endif %}
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <div class="text-gray-300">
-           {{ user.last_name }} {{ user.first_name}}
+
           </div>
         <!-- Profile dropdown -->
         <div class="relative ml-3">

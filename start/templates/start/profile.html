@@ -79,7 +79,6 @@
                 </div>
             </div>
         </form>
-        <a href="add_rialto" class="btn w-48 h-16 py-2 px-4">Создать проект для Биржи</a>
     {%  elif type == 'organization' %}
         <form enctype="multipart/form-data" action="/profile" method="post">
             {% csrf_token %}
@@ -112,7 +111,6 @@
                       </div>
                 </div>
             </div>
-            <a href="add_project" class="btn w-48 h-16 py-2 px-4">Создать проект для компании</a>
         </form>
     {% endif %}
     </body>
