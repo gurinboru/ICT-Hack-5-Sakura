@@ -74,7 +74,7 @@ class addRialtoForms(forms.Form):
                        required=True)
     investment = forms.IntegerField(widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "Инвестиции..."}),
                        required=True)
-    dedline = forms.DateField(widget=forms.DateInput(attrs={"class": "form-control", "placeholder": "Сроки..."}),
+    dedline = forms.DateField(widget=forms.DateInput(attrs={"class": "form-control", "placeholder": "MM/DD/YYYY"}),
                        required=True)
     FCF = forms.IntegerField(widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "FCF..."}),
                        required=True)
