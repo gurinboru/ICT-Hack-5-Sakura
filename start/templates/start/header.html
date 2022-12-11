@@ -28,10 +28,11 @@
             <a href="/students" class="aheader text-white-300">[Студенты]</a>
             <a href="/projects" class="aheader text-white-300">[Проекты]</a>
             <a href="/rialtos" class="aheader text-white-300">[Биржа]</a>
-            <a href="/myapplications" class="aheader text-purple">[Мои заявки]</a>
             {% if type == 'organization' %}
-            <a href="/getMyProject" class="aheader text-white">[Наши проекты]</a>
-            {%  endif %}
+                <a href="/getMyProject" class="aheader text-purple">[Наши проекты]</a>
+            {%  else %}
+                <a href="/studentonproject" class="aheader text-purple">[Мои заявки]</a>
+            {% endif %}
           </div>
         </div>
       </div>

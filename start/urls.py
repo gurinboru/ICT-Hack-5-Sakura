@@ -14,7 +14,8 @@ urlpatterns = [
     path('currialto/<int:pk>', views.getRialto, name='currialto'),
     path('curstudent/get_cv/<int:pk>',views.get_cv),
     path('currialto/get_presentation/<int:pk>',views.get_presentation),
-    path('studentOnProject', views.studentOnProject, name='studentOnProject'),
+    path('studentonproject', views.studentOnProject, name='studentonproject'),
     path('getMyProject', views.getMyProject, name='getMyProject'),
+    path('requestStudentToProject/<int:pk>', views.requestStudentToProject, name='requestStudentToProject'),
 
 ]

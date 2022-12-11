@@ -347,16 +347,16 @@ def addProject(request):
 
 @login_required(login_url='/login')
 def requestStudentToProject(request,pk):
-    if request.method == "POST":
+    # if request.method == "POST":
         try:
             student = Student.objects.get(user=request.user)
-            StudentProject(students = student, projects = Project.objects.get(pk = pk),statusApproval =StatusApproval.objects.get(status = StatusApproval.ToBeAgreed)).save()
+            StudentProject(students = student, project = Project.objects.get(pk = pk),statusApproval =StatusApproval.objects.get(status = StatusApproval.ToBeAgreed)).save()
             messages.success(request, 'Ваша заявка принята')
-            redirect("projects")
+            return redirect("studentonproject")
         except Student.DoesNotExist:
             messages.error(request, 'Нет прав доступа')
-            return redirect('projects')
-    return redirect('projects')
+            return redirect('studentonproject')
+    #return redirect('studentonproject')
 
 
 @login_required(login_url='/login')
@@ -368,7 +368,7 @@ def studentOnProject(request):
             "type": 'student',
             "studentProject": studentProject,
         }
-        return  render(request, 'start/myapplications.html', content)
+        return  render(request, 'start/studentonproject.html', content)
     except Student.DoesNotExist:
         messages.error(request, 'Нет прав доступа')
         return redirect('students')

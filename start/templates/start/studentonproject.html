@@ -1,0 +1,31 @@
+{% extends 'start/header.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div class=container style="position:relative">
+        {% for studentProjectt in studentProject %}
+                <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                    <dl>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
+                            <dt class="text-xl font-medium text-purple">{{ studentProjectt.project }}</dt>
+                        </div>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 rounded-b-lg">
+
+                            {% if project.status_approval.status == 'Согласовано' %}
+                                <dd class="mt-1 text-sm text-green sm:mt-0">Заявка {{ studentProjectt.statusApproval }}</dd>
+                            {% elif project.status_approval.status == 'На согласовании' %}
+                                <div class="mt-1 text-sm text-yellow sm:mt-0">Заявка {{ studentProjectt.statusApproval }}</div>
+                            {% else %}
+                                <dd class="mt-1 text-sm text-red sm:mt-0">Заявка {{ studentProjectt.statusApproval }}</dd>
+                            {% endif %}
+                        </div>
+                    </dl>
+                </div>
+        {% endfor %}
+    </div>
+</body>
+</body>
+{% endblock %}
+{% block title %}
+Мои заявки
+{% endblock %}
