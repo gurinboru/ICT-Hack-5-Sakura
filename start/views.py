@@ -336,7 +336,7 @@ def addProject(request):
                 redirect('projects')
         form = addProjectForm()
         content = {
-            "type" : 'organisation',
+            "type" : 'organization',
             "form": form,
         }
         return render(request, 'start/add_project.html', content)
@@ -379,7 +379,7 @@ def getMyProject(request):
         organization = Organization.objects.get(user=request.user)
         projects = Project.objects.filter(organization=organization)
         content = {
-            "type": 'organisation',
+            "type": 'organization',
             "projects": projects,
         }
         return  render(request, 'start/getMyProject.html', content)
