@@ -142,6 +142,7 @@ def projects(request):
             tags = student.tags.replace(",","").split(' ')
             recommendprojects = Project.objects.filter(reduce(and_, [Q(tags__icontains=tag) for tag in tags]))
             content = {
+                "type":"student",
                 "recommendprojects": recommendprojects,
                 "projects": projects,
             }
@@ -166,6 +167,7 @@ def getProject(request,pk):
                 tags = project.tags.replace(",", "").split(' ')
                 recommendstudent = Student.objects.filter(reduce(and_, [Q(tags__icontains=tag) for tag in tags]))
                 content = {
+                    "type":"organization",
                     "recommendstudent" : recommendstudent,
                     "project": project,
                 }
