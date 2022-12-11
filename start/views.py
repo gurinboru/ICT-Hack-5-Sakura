@@ -208,7 +208,7 @@ def getProject(request,pk):
     try:
         organization = Organization.objects.get(user=user)
         if project.organization == organization:
-            seekStudent = StudentProject.objects.filter(project in project).values('students')
+            seekStudent = StudentProject.objects.filter(project = project).values('students')
             if project.tags != None and project.tags != "":
                 tags = project.tags.replace(",", "").split(' ')
                 recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]))
