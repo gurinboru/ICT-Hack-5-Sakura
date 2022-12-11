@@ -17,16 +17,7 @@ def start(request):
 
 @login_required(login_url='/login')
 def students(request):
-    user = User.objects.get(id = request.user.id)
-    # try:
-    #     organization = Organization.objects.get(user = user)
-    #     permission = ApprovalPermission.objects.filter(organization = organization)
-    #     s = ''
-    #     for perm in permission:
-    #         s = s + '"' + perm.field + '",'
-    #     students = Student.objects.all().values(s)
-    # except Organization.DoesNotExist:
-    students = Student.objects.all()
+    students = Student.objects.all().only('education','user__first_name','user__last_name','image')
     content = {
         "students" : students,
     }
@@ -39,14 +30,22 @@ def students(request):
 
 @login_required(login_url='/login')
 def getStudent(request,pk):
-    student = Student.objects.get(id = pk)
-    content = {
-        "student" : student,
-    }
     try:
         organization = Organization.objects.get(user=request.user)
+        permission = ApprovalPermission.objects.filter(organization = organization)
+        fields=[]
+        for perm in permission:
+            fields.append(perm.field)
+        student = Student.objects.get(id=pk)
+        content = {
+            "student": student,
+        }
         content["type"] = "organization"
     except Organization.DoesNotExist:
+        students = Student.objects.all().only('education', 'user__first_name', 'user__last_name', 'image')
+        content = {
+            "student": student,
+        }
         content["type"] = "student"
     return render(request, 'start/curstudent.html',content)
 
@@ -145,12 +144,12 @@ def cangeProfile(request):
 @login_required(login_url='/login')
 def projects(request):
     user = User.objects.get(id=request.user.id)
-    projects = Project.objects.all()
+    projects = Project.objects.filter(status_approval = StatusApproval.Agreed)
     try:
         student = Student.objects.get(user=user)
         if student.tags != None and student.tags != "":
             tags = student.tags.replace(",","").split(' ')
-            recommendprojects = Project.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]))
+            recommendprojects = Project.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.Agreed)
             content = {
                 "type":"student",
                 "recommendprojects": recommendprojects,
@@ -204,15 +203,15 @@ def get_image(request,pk):
 
 @login_required(login_url='/login')
 def getProject(request,pk):
-    project = Project.objects.get(id = pk)
+    project = Project.objects.get(id = pk, status_approval = StatusApproval.Agreed)
     user = User.objects.get(id = request.user.id)
     try:
         organization = Organization.objects.get(user=user)
         if project.organization == organization:
             if project.tags != None and project.tags != "":
                 tags = project.tags.replace(",", "").split(' ')
-                recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]))
-                seekStudent = StudentProject.objects.filter(project = project).values('students')
+                recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.Agreed)
+                seekStudent = StudentProject.objects.filter(project in project).values('students')
                 content = {
                     "type":"organization",
                     "recommendstudent" : recommendstudent,
@@ -239,7 +238,7 @@ def getProject(request,pk):
 
 @login_required(login_url='/login')
 def rialtos(request):
-    rialtos = Rialto.objects.all()
+    rialtos = Rialto.objects.filter(status_approval = StatusApproval.Agreed)
     content = {
         "rialtos" : rialtos,
     }
@@ -252,7 +251,7 @@ def rialtos(request):
 
 @login_required(login_url='/login')
 def getRialto(request,pk):
-    rialto = Rialto.objects.get(pk = pk)
+    rialto = Rialto.objects.get(pk = pk, status_approval = StatusApproval.Agreed)
     content = {
         "rialto" : rialto,
     }

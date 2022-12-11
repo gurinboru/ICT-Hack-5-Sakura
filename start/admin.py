@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Organization,StatusProject, StatusApproval,Student,Project,StudentProject,Rialto,ApprovalPermission
+from .models import Organization,StatusProject, StatusApproval,Student,Project,StudentProject,Rialto,ApprovalPermission,ContactPerson
 #
 # admin.site.register(Organization)
 # admin.site.register(Student)
@@ -7,6 +7,7 @@ from .models import Organization,StatusProject, StatusApproval,Student,Project,S
 admin.site.register(StudentProject)
 admin.site.register(Rialto)
 admin.site.register(ApprovalPermission)
+admin.site.register(ContactPerson)
 
 class StatusApprovalAdmin(admin.ModelAdmin):
     model = StatusApproval
