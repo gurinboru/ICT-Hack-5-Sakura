@@ -6,15 +6,15 @@
         {% for project in projects %}
                 <a href="curproject/{{ project.id }}">
                 <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
-                <dl>
-                <div class="bg-gray-50 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
-                    <dt class="text-xl font-medium text-gray-900">{{ project.name }}</dt>
-                </div>
-                <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
-                    <dt class="text-sm font-medium text-gray-900">{{ project.organization }}</dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">От {{ project.budjet }}</dd>
-                </div>
-                </dl>
+                    <dl>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
+                            <dt class="text-xl font-medium text-purple">{{ project.name }}</dt>
+                        </div>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
+                            <dt class="text-sm font-medium text-gray-900">{{ project.organization }}</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">От {{ project.budjet }} Млн. руб.</dd>
+                        </div>
+                    </dl>
                 </div>
                 </a>
             </dl>
