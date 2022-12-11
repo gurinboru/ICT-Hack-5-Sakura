@@ -157,6 +157,39 @@ def projects(request):
     return render(request, 'start/projects.html',content)
 
 @login_required(login_url='/login')
+def get_cv(request,pk):
+    student = Student.objects.get(pk = pk)
+    try:
+        from django.http import FileResponse
+        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.cv)
+        return FileResponse(open(pathHelp, 'rb'))
+    except FileNotFoundError:
+        from django.http import Http404
+        raise Http404()
+
+@login_required(login_url='/login')
+def get_presentation(request,pk):
+    rialto = Rialto.objects.get(pk = pk)
+    try:
+        from django.http import FileResponse
+        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', rialto.presentation)
+        return FileResponse(open(pathHelp, 'rb'))
+    except FileNotFoundError:
+        from django.http import Http404
+        raise Http404()
+
+@login_required(login_url='/login')
+def get_image(request,pk):
+    student = Student.objects.get(pk = pk)
+    try:
+        from django.http import FileResponse
+        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.image)
+        return FileResponse(open(pathHelp, 'rb'))
+    except FileNotFoundError:
+        from django.http import Http404
+        raise Http404()
+
+@login_required(login_url='/login')
 def getProject(request,pk):
     project = Project.objects.get(id = pk)
     user = User.objects.get(id = request.user.id)
