@@ -68,7 +68,10 @@
                 </div>
             {% endfor %}
         {% elif type == 'student' %}
-            <a href="/requestStudentToProject/{{ project.id }}" class="btn w-48 h-16 py-2 px-4">Подать заявку!</a>
+            <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-purple"></dt>
+                    <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0"><a href="/requestStudentToProject/{{ project.id }}" class="btn w-48 h-16 py-2 px-4">Подать заявку на проект!</a></dd>
+            </div>
         {% endif %}
     </dl>
   </div>
