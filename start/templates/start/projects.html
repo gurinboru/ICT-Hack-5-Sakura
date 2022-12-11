@@ -25,7 +25,7 @@
                     <dt class="text-xl font-medium text-purple">{{ recommendproject.name }}</dt>
                 </div>
                 <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
-                    <dt class="text-sm font-medium text-gray-900">{{ recommendproject.organization }}</dt>
+                    <dt class="text-sm font-medium text-gray-900">{{ recommendproject.organization.name }}</dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">От {{ recommendproject.budjet }} Млн. руб.</dd>
                 </div>
                 </dl>
@@ -43,7 +43,7 @@
                             <dt class="text-xl font-medium text-purple">{{ project.name }}</dt>
                         </div>
                         <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
-                            <dt class="text-sm font-medium text-gray-900">{{ project.organization }}</dt>
+                            <dt class="text-sm font-medium text-gray-900">{{ project.organization.name }}</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">От {{ project.budjet }} Млн. руб.</dd>
                         </div>
                     </dl>

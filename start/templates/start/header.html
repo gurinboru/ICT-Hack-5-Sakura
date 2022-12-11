@@ -29,6 +29,9 @@
             <a href="/projects" class="aheader text-white-300">[Проекты]</a>
             <a href="/rialtos" class="aheader text-white-300">[Биржа]</a>
             <a href="/myapplications" class="aheader text-purple">[Мои заявки]</a>
+            {% if type == 'organization' %}
+            <a href="/getMyProject" class="aheader text-white">[Наши проекты]</a>
+            {%  endif %}
           </div>
         </div>
       </div>
@@ -36,14 +39,15 @@
         <div class="text-gray-300">
 
           </div>
-        <!-- Profile dropdown -->
+        <!-- Profile dropdown
+        {% if type == 'student' %}
         <div class="relative ml-3">
-
           <div>
-                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                </div>
-            </div>
-
+              <img src="{{ student.image.url }}" class="h-8 w-8 rounded-full">
+          </div>
+        </div>
+        {% endif %}
+        -->
           <a href="/profile" class="btn2 text-gray-300 hover:bg-gray-700 ml-4 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Профиль</a>
           <a href="/logout" class="btn text-gray-300 hover:bg-gray-700 ml-4 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Выйти</a>
       </div>

@@ -380,9 +380,9 @@ def getMyProject(request):
         projects = Project.objects.filter(organization=organization)
         content = {
             "type": 'organisation',
-            "form": projects,
+            "projects": projects,
         }
-        return  render(request, 'start/myprojects.html', content)
+        return  render(request, 'start/getMyProject.html', content)
     except Organization.DoesNotExist:
         messages.error(request, 'Нет прав доступа')
         return redirect('students')

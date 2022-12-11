@@ -67,6 +67,8 @@ body{
 .text-blue{  color: #221183;}
 .text-green{  color: #52A874;}
 .text-purple{  color: #7B45EC;}
+.text-yellow{  color: #ffba00;}
+.text-red{  color: red;}
 
 .dwnld:hover{
     color: #52A874;
