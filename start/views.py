@@ -1,7 +1,11 @@
 import os
+from functools import reduce
+from operator import and_
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+
 from .models import *
 from .forms import *
 from django.shortcuts import render, redirect
@@ -136,7 +140,7 @@ def projects(request):
         student = Student.objects.get(user=user)
         if student.tags != None:
             tags = student.tags.replace(",","").split(' ')
-            recommendprojects = Project.objects.filter(tags__contains= tags)
+            recommendprojects = Project.objects.filter(reduce(and_, [Q(tags__icontains=tag) for tag in tags]))
             content = {
                 "recommendprojects": recommendprojects,
                 "projects": projects,
@@ -160,7 +164,7 @@ def getProject(request,pk):
         if project.organization == organization:
             if project.tags != None :
                 tags = project.tags.replace(",", "").split(' ')
-                recommendstudent = Student.objects.filter(tags__icontains=tags)
+                recommendstudent = Student.objects.filter(reduce(and_, [Q(tags__icontains=tag) for tag in tags]))
                 content = {
                     "recommendstudent" : recommendstudent,
                     "project": project,
