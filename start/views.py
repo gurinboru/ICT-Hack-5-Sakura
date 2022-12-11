@@ -355,3 +355,7 @@ def requestStudentToProject(request,pk):
             messages.error(request, 'Нет прав доступа')
             return redirect('projects')
     return redirect('projects')
+
+@login_required(login_url='/login')
+def myApplications(request):
+    return render(request, 'start/myapplications.html')

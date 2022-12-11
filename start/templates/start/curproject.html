@@ -29,7 +29,7 @@
         <dt class="text-sm font-medium text-purple">Цель</dt>
         <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ project.goalOfProject }}</dd>
       </div>
-      <!--<div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-purple">Вложения (CV)</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
           <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
@@ -46,7 +46,7 @@
             </li>
           </ul>
         </dd>
-      </div>-->
+      </div>
       <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 gap-1 sm:px-6">
         <dt class="text-sm font-medium text-purple">Контактное лицо</dt>
         <div class="grid grid-cols-6">
@@ -58,6 +58,17 @@
             </a>
           </div>
       </div>
+
+        {% if type == 'organization' %}
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Рекомендуемые студенты</h2>
+            {% for recommendstudentt in recommendstudent %}
+                <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-purple">Фамилия Имя</dt>
+                    <dd class="mt-1 text-sm text-white sm:col-span-2 sm:mt-0">{{ recommendstudentt.user.last_name }} {{ student.user.first_name }}</dd>
+                    <a href="/curstudent/{{ recommendstudentt.id }}" class="btn w-48 h-16 py-2 px-4">Перейти</a>
+                </div>
+            {% endfor %}
+        {% endif %}
     </dl>
   </div>
 </div>
