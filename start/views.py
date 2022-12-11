@@ -174,7 +174,7 @@ def get_cv(request,pk):
     student = Student.objects.get(pk = pk)
     try:
         from django.http import FileResponse
-        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.cv)
+        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.CV)
         return FileResponse(open(pathHelp, 'rb'))
     except FileNotFoundError:
         from django.http import Http404
