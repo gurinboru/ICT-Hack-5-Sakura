@@ -173,6 +173,7 @@ def getProject(request,pk):
                 }
             else:
                 content = {
+                    "type": "organization",
                     "project": project,
                 }
         else:
@@ -182,6 +183,7 @@ def getProject(request,pk):
             return render(request, 'start/curproject.html', content)
     except Organization.DoesNotExist:
         content = {
+            "type": "student",
             "project" : project,
         }
     return render(request, 'start/curproject.html',content)
