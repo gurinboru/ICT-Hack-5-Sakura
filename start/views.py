@@ -220,7 +220,7 @@ def getProject(request,pk):
                 }
             else:
                 content = {
-                    "seekStudent": seekStudent
+                    "seekStudent": seekStudent,
                     "type": "organization",
                     "project": project,
                 }
