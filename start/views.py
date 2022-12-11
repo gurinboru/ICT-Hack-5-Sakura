@@ -203,7 +203,7 @@ def get_image(request,pk):
 
 @login_required(login_url='/login')
 def getProject(request,pk):
-    project = Project.objects.get(id = pk, status_approval = StatusApproval.objects.get(status = StatusApproval.ToBeAgreed))
+    project = Project.objects.get(id = pk, status_approval = StatusApproval.objects.get(status = StatusApproval.Agreed))
     user = User.objects.get(id = request.user.id)
     try:
         organization = Organization.objects.get(user=user)
