@@ -144,12 +144,12 @@ def cangeProfile(request):
 @login_required(login_url='/login')
 def projects(request):
     user = User.objects.get(id=request.user.id)
-    projects = Project.objects.filter(status_approval = StatusApproval.Agreed)
+    projects = Project.objects.filter(status_approval = StatusApproval.objects.get(status = StatusApproval.Agreed))
     try:
         student = Student.objects.get(user=user)
         if student.tags != None and student.tags != "":
             tags = student.tags.replace(",","").split(' ')
-            recommendprojects = Project.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.Agreed)
+            recommendprojects = Project.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.objects.get(status = StatusApproval.Agreed))
             content = {
                 "type":"student",
                 "recommendprojects": recommendprojects,
@@ -211,7 +211,7 @@ def getProject(request,pk):
             seekStudent = StudentProject.objects.filter(project in project).values('students')
             if project.tags != None and project.tags != "":
                 tags = project.tags.replace(",", "").split(' ')
-                recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.Agreed)
+                recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.objects.get(status = StatusApproval.Agreed))
                 content = {
                     "type":"organization",
                     "recommendstudent" : recommendstudent,
@@ -239,7 +239,7 @@ def getProject(request,pk):
 
 @login_required(login_url='/login')
 def rialtos(request):
-    rialtos = Rialto.objects.filter(status_approval = StatusApproval.Agreed)
+    rialtos = Rialto.objects.filter(status_approval = StatusApproval.objects.get(status = StatusApproval.Agreed))
     content = {
         "rialtos" : rialtos,
     }
@@ -252,7 +252,7 @@ def rialtos(request):
 
 @login_required(login_url='/login')
 def getRialto(request,pk):
-    rialto = Rialto.objects.get(pk = pk, status_approval = StatusApproval.Agreed)
+    rialto = Rialto.objects.get(pk = pk, status_approval = StatusApproval.objects.get(status = StatusApproval.Agreed))
     content = {
         "rialto" : rialto,
     }
