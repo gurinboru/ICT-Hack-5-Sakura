@@ -91,3 +91,16 @@ body{
 input[type=file] {
 	color: white;
 }
+.hovercard:hover{
+    color: #52A874;
+}
+
+.scale2 {
+    transition: 1s; /* Время эффекта */
+}
+.scale2:hover {
+    transform: scale(1.1); /* Увеличиваем масштаб */
+}
+.border-green{
+    border-color: #52A874;
+}

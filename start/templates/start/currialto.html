@@ -29,7 +29,7 @@
           <dd class="mt-2 text-l text-white">{{ rialto.student.user.first_name }} {{ rialto.student.user.last_name }}</dd>
         </div>
 
-          <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-200 pt-4">
             <dt class="text-sm font-medium text-purple">Вложения (Presentation)</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
@@ -48,6 +48,10 @@
               </ul>
             </dd>
           </div>
+              <div class="border-t border-gray-200 pt-4">
+                  <a href="https://t.me/+{{ rialto.student.phone }}" class="btn text-gray-300 hover:bg-gray-700 ml-4 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                      Инвестировать</a>
+              </div>
       </dl>
     </div>
   </div>
