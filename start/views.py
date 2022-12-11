@@ -30,19 +30,21 @@ def students(request):
 
 @login_required(login_url='/login')
 def getStudent(request,pk):
+    student = Student.objects.get(id=pk)
     try:
         organization = Organization.objects.get(user=request.user)
         # permission = ApprovalPermission.objects.filter(organization = organization)
-        # query = Q()
+        # raw = 'SELECT '
         # for perm in permission:
-        #     query.add(perm)
-        student = Student.objects.get(id=pk)
+        #     raw = raw + perm.field + ","
+        # raw = raw + 'FROM start.student Where id = ' + str(pk)
+        # student = Student.objects.raw(raw)
+
         content = {
             "student": student,
         }
         content["type"] = "organization"
     except Organization.DoesNotExist:
-        student = Student.objects.only('education', 'user__first_name', 'user__last_name', 'image').get(id=pk)
         content = {
             "student": student,
         }
@@ -366,9 +368,11 @@ def studentOnProject(request):
     try:
         student = Student.objects.get(user=request.user)
         studentProject = StudentProject.objects.filter(students = student)
+        rialtos = Rialto.objects.filter(student = student)
         content = {
             "type": 'student',
             "studentProject": studentProject,
+            "rialtos": rialtos
         }
         return  render(request, 'start/studentonproject.html', content)
     except Student.DoesNotExist:
