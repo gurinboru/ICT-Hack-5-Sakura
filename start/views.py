@@ -136,7 +136,7 @@ def projects(request):
         student = Student.objects.get(user=user)
         if student.tags != None:
             tags = student.tags.replace(",","").split(' ')
-            recommendprojects = Project.objects.filter(tags__icontains= tags)
+            recommendprojects = Project.objects.filter(tags__contains= tags)
             content = {
                 "recommendprojects": recommendprojects,
                 "projects": projects,
