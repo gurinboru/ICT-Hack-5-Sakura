@@ -1,6 +1,6 @@
 import os
 from functools import reduce
-from operator import and_
+from operator import and_, or_
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -30,6 +30,11 @@ def students(request):
     content = {
         "students" : students,
     }
+    try:
+        organization = Organization.objects.get(user=request.user)
+        content["type"] = "organization"
+    except Organization.DoesNotExist:
+        content["type"] = "student"
     return render(request, 'start/students.html',content)
 
 @login_required(login_url='/login')
@@ -38,6 +43,11 @@ def getStudent(request,pk):
     content = {
         "student" : student,
     }
+    try:
+        organization = Organization.objects.get(user=request.user)
+        content["type"] = "organization"
+    except Organization.DoesNotExist:
+        content["type"] = "student"
     return render(request, 'start/curstudent.html',content)
 
 @login_required(login_url='/login')
@@ -140,7 +150,7 @@ def projects(request):
         student = Student.objects.get(user=user)
         if student.tags != None:
             tags = student.tags.replace(",","").split(' ')
-            recommendprojects = Project.objects.filter(reduce(and_, [Q(tags__icontains=tag) for tag in tags]))
+            recommendprojects = Project.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]))
             content = {
                 "type":"student",
                 "recommendprojects": recommendprojects,
@@ -149,11 +159,9 @@ def projects(request):
             return render(request, 'start/projects.html', content)
     except Student.DoesNotExist:
         content = {
+            "type": "organization",
             "projects" : projects,
         }
-    content = {
-        "projects": projects,
-    }
     return render(request, 'start/projects.html',content)
 
 @login_required(login_url='/login')
@@ -198,7 +206,7 @@ def getProject(request,pk):
         if project.organization == organization:
             if project.tags != None :
                 tags = project.tags.replace(",", "").split(' ')
-                recommendstudent = Student.objects.filter(reduce(and_, [Q(tags__icontains=tag) for tag in tags]))
+                recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]))
                 content = {
                     "type":"organization",
                     "recommendstudent" : recommendstudent,
@@ -211,6 +219,7 @@ def getProject(request,pk):
                 }
         else:
             content = {
+                "type": "organization",
                 "project": project,
             }
             return render(request, 'start/curproject.html', content)
@@ -227,6 +236,11 @@ def rialtos(request):
     content = {
         "rialtos" : rialtos,
     }
+    try:
+        organization = Organization.objects.get(user=request.user)
+        content["type"] = "organization"
+    except Organization.DoesNotExist:
+        content["type"] = "student"
     return render(request, 'start/rialtos.html',content)
 
 @login_required(login_url='/login')
@@ -235,6 +249,11 @@ def getRialto(request,pk):
     content = {
         "rialto" : rialto,
     }
+    try:
+        organization = Organization.objects.get(user=request.user)
+        content["type"] = "organization"
+    except Organization.DoesNotExist:
+        content["type"] = "student"
     return render(request, 'start/currialto.html',content)
 
 @login_required(login_url='/login')
@@ -264,6 +283,7 @@ def addRialto(request):
         else:
             form = addRialtoForms()
             content = {
+                "type": "student",
                 "form": form,
             }
             return render(request, 'start/add_rialto.html',content)
@@ -309,6 +329,7 @@ def addProject(request):
                 redirect('projects')
         form = addProjectForm()
         content = {
+            "type" : 'organisation',
             "form": form,
         }
         return render(request, 'start/add_project.html', content)
