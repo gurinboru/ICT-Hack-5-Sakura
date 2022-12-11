@@ -211,7 +211,7 @@ def getProject(request,pk):
             seekStudent = StudentProject.objects.filter(project in project).values('students')
             if project.tags != None and project.tags != "":
                 tags = project.tags.replace(",", "").split(' ')
-                recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]), status_approval = StatusApproval.objects.get(status = StatusApproval.Agreed))
+                recommendstudent = Student.objects.filter(reduce(or_, [Q(tags__icontains=tag) for tag in tags]))
                 content = {
                     "type":"organization",
                     "recommendstudent" : recommendstudent,
