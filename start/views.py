@@ -130,6 +130,7 @@ def cangeProfile(request):
                 "image":student.image,
                 "tags":student.tags,
                 "CV":student.CV,
+                "ISU": student.ISU,
                 "education":student.education,
                 "department":student.department,
                 "hardskill_softskill":student.hardskill_softskill,
