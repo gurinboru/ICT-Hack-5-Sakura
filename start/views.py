@@ -174,7 +174,7 @@ def get_cv(request,pk):
     student = Student.objects.get(pk = pk)
     try:
         from django.http import FileResponse
-        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.CV)
+        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.CV.name)
         return FileResponse(open(pathHelp, 'rb'))
     except FileNotFoundError:
         from django.http import Http404
@@ -185,7 +185,7 @@ def get_presentation(request,pk):
     rialto = Rialto.objects.get(pk = pk)
     try:
         from django.http import FileResponse
-        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', rialto.presentation)
+        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', rialto.presentation.name)
         return FileResponse(open(pathHelp, 'rb'))
     except FileNotFoundError:
         from django.http import Http404
@@ -196,7 +196,7 @@ def get_image(request,pk):
     student = Student.objects.get(pk = pk)
     try:
         from django.http import FileResponse
-        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.image)
+        pathHelp = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/', student.image.urls)
         return FileResponse(open(pathHelp, 'rb'))
     except FileNotFoundError:
         from django.http import Http404
