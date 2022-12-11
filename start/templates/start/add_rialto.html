@@ -1,0 +1,51 @@
+{% extends 'start/header.html' %}
+{% load static %}
+{% block content %}
+<body>
+<div class="overflow-hidden mt-8 mr-8 ml-8 mb-8 bg-black">
+  <div class="px-4 py-5 sm:px-6">
+    <h3 class="text-lg font-medium leading-6 text-white">Детали бизнес проекта</h3>
+  </div>
+    <form action="/add_rialto" enctype="multipart/form-data" method="POST">
+{% csrf_token %}
+  <div class="border-t border-l border-r border-b border-green rounded">
+    <dl>
+        <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Название</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.name}}</dd>
+      </div>
+      <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Описание</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.definitions}}</dd>
+      </div>
+        <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Презентация</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.presentation}}</dd>
+      </div>
+        <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Инвестиции</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.investment}}</dd>
+      </div>
+        <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Сроки</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.dedline}}</dd>
+      </div>
+        <div class="bg-black-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-purple">Свободный денежный поток</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{form.FCF}}</dd>
+      </div>
+
+       <div class="bg-black px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <button type="submit" class="btn h-8 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium hover:text-white px-16 pl-16 hover:border-transparent rounded">Сохранить бизнес проект</button>
+       </div>
+    </dl>
+  </div>
+    </form>
+</div>
+</body>
+
+
+{% endblock %}
+{% block title %}
+Добавить кандидата
+{% endblock %}

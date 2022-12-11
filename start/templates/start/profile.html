@@ -1,0 +1,120 @@
+{% extends 'start/header.html' %}
+{% load static %}
+    <head>
+        <link rel="stylesheet" href="static/start/css/stylereg.css">
+    </head>
+{% block content %}
+    <body>
+    {% if type == 'student' %}
+        <form enctype="multipart/form-data" action="/profile" method="post">
+            {% csrf_token %}
+                <div class="wrapper">
+                    <div class="title">
+                      Информация о студенте
+                    </div>
+                    <div class="form">
+                        <div class="inputfield">
+                          <label>Имя</label>
+                          {{form.first_name}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Фамилия</label>
+                          {{form.last_name}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Email</label>
+                          {{form.email}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Телефон</label>
+                          {{form.phone}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Фото профиля</label>
+                          {{form.image}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>CV</label>
+                          {{form.CV}}
+                       </div>
+
+                      <div class="inputfield">
+                          <label>ИСУ</label>
+                          {{form.ISU}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Теги</label>
+                          {{form.tags}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Образование</label>
+                          {{form.education}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Факультет</label>
+                          {{form.department}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Навыки</label>
+                          {{form.hardskill_softskill}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Опыт</label>
+                          {{form.experience}}
+                       </div>
+
+                      <div class="inputfield">
+                        <input type="submit" value="Сохранить изменения" class="btn">
+                      </div>
+                </div>
+            </div>
+        </form>
+    {%  elif type == 'organization' %}
+        <form enctype="multipart/form-data" action="/profile" method="post">
+            {% csrf_token %}
+                <div class="wrapper">
+                    <div class="title">
+                      Информация об организации
+                    </div>
+                    <div class="form">
+                        <div class="inputfield">
+                          <label>Название</label>
+                          {{form.name}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Username</label>
+                          {{form.username}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>Email</label>
+                          {{form.email}}
+                       </div>
+
+                        <div class="inputfield">
+                          <label>ИНН</label>
+                          {{form.INN}}
+                       </div>
+                      <div class="inputfield">
+                        <input type="submit" value="Сохранить изменения" class="btn">
+                      </div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+    </body>
+{% endblock %}
+{% block title %}
+Oбновить данные
+{% endblock %}

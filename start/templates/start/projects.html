@@ -1,0 +1,59 @@
+{% extends 'start/header.html' %}
+{% load static %}
+{% block content %}
+    <body >
+        <div class=container style="position:relative">
+        {% if type == 'organization' %}
+            <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                    <dl>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg rounded-b-lg">
+                            <dt class="text-xl font-medium text-blue hoverlink"></dt>
+                                <a href="/add_project" class="text-purple hovercard scale2">Добавить проект</a>
+                        </div>
+                    </dl>
+                </div>
+                </a>
+            </dl>
+        {%  endif %}
+        {% if type == 'student' %}
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Рекомендуемые проекты</h2>
+            {% for recommendproject in recommendprojects %}
+                <a href="curproject/{{ recommendproject.id }}">
+                <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                <dl>
+                <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
+                    <dt class="text-xl font-medium text-purple">{{ recommendproject.name }}</dt>
+                </div>
+                <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
+                    <dt class="text-sm font-medium text-gray-900">{{ recommendproject.organization.name }}</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ recommendproject.budjet }} Млн. руб.</dd>
+                </div>
+                </dl>
+                </div>
+                </a>
+            </dl>
+            {% endfor %}
+        {%  endif %}
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Все проекты</h2>
+        {% for project in projects %}
+                <a href="curproject/{{ project.id }}">
+                <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                    <dl>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
+                            <dt class="text-xl font-medium text-purple">{{ project.name }}</dt>
+                        </div>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
+                            <dt class="text-sm font-medium text-gray-900">{{ project.organization.name }}</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ project.budjet }} Млн. руб.</dd>
+                        </div>
+                    </dl>
+                </div>
+                </a>
+            </dl>
+        {% endfor %}
+        </div>
+    </body>
+{% endblock %}
+{% block title %}
+Кандидаты
+{% endblock %}

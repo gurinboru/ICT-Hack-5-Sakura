@@ -1,0 +1,39 @@
+{% extends 'start/header.html' %}
+{% load static %}
+{% block content %}
+    <body >
+    <div class=container style="position:relative">
+    {% if type == 'student' %}
+                <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                    <dl>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg rounded-b-lg">
+                            <dt class="text-xl font-medium text-blue hoverlink"></dt>
+                                <a href="/add_rialto" class="text-purple hovercard scale2">Добавить проект на Биржу</a>
+                        </div>
+                    </dl>
+                </div>
+                </a>
+            </dl>
+    {% endif %}
+        {% for rialto in rialtos %}
+            <a href="currialto/{{ rialto.id }}">
+                <div class="pt-6 pr-64 pl-64 overflow-hidden" style="background: #000000">
+                    <dl>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-t-lg">
+                            <dt class="text-xl font-medium text-purple">{{ rialto.name }}</dt>
+                        </div>
+                        <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 rounded-b-lg">
+                            <dt class="text-sm font-medium text-gray-900">{{ rialto.student.user.first_name }} {{ rialto.student.user.last_name }}</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ rialto.investment }} Млн. руб.</dd>
+                        </div>
+                    </dl>
+                </div>
+                </a>
+            </dl>
+    {% endfor %}
+    </div>
+    </body>
+{% endblock %}
+{% block title %}
+Биржа
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" >
+{% load static %}
+<head>
+    <meta charset="utf-8">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+    <link href="https://unpkg.com/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href={% static 'start/css/stylejob.css' %}>
+    <link rel="stylesheet" href={% static 'start/css/stylereg.css' %}>
+    <title>
+        {% block title%}
+        {% endblock %}
+    </title>
+</head>
+<body class="mainbody d-flex flex-column min-vh-100 ">
+{% if request.user.is_authenticated %}
+<nav class="border-b border-white">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <a href="/students" class="aheader text-white-300">[Студенты]</a>
+            <a href="/projects" class="aheader text-white-300">[Проекты]</a>
+            <a href="/rialtos" class="aheader text-white-300">[Биржа]</a>
+            {% if type == 'organization' %}
+                <a href="/getMyProject" class="aheader text-purple">[Наши проекты]</a>
+            {%  else %}
+                <a href="/studentonproject" class="aheader text-purple">[Мои заявки]</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div class="text-gray-300">
+
+          </div>
+        <!-- Profile dropdown
+        {% if type == 'student' %}
+        <div class="relative ml-3">
+          <div>
+              <img src="{{ student.image.url }}" class="h-8 w-8 rounded-full">
+          </div>
+        </div>
+        {% endif %}
+        -->
+          <a href="/profile" class="btn2 text-gray-300 hover:bg-gray-700 ml-4 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Профиль</a>
+          <a href="/logout" class="btn text-gray-300 hover:bg-gray-700 ml-4 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Выйти</a>
+      </div>
+    </div>
+  </div>
+
+
+</nav>
+
+
+
+{% else %}
+<nav class="bg-gray-800">
+</nav>
+{% endif %}
+
+{% block content %}
+{% endblock %}
+</body>
+
